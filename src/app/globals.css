@@ -1,0 +1,352 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Cala Studio — tokens
+   ------------------------------------------------------------------ */
+@theme {
+  --color-agua: #42dcc6;        /* aguamarina principal: fondos, líneas, detalles */
+  --color-agua-deep: #159c8e;   /* aguamarina oscuro: titulares grandes, hover */
+  --color-agua-ink: #0b6b61;    /* aguamarina para texto pequeño (AA sobre crema) */
+  --color-agua-soft: #d6f6f1;   /* tinte suave para selección y fondos puntuales */
+  --color-cream: #f8f7f2;
+  --color-paper: #efede5;
+  --color-ink: #171717;
+  --color-ink-soft: #2a2a28;
+  --color-mute: #62615c;        /* gris de texto (AA sobre crema y papel) */
+  --color-mute-dark: #a5a49e;   /* gris de texto sobre negro */
+  --color-error: #a33a1f;
+  --color-line: rgb(23 23 23 / 0.14);
+  --color-line-dark: rgb(248 247 242 / 0.16);
+
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --breakpoint-xs: 26rem;
+  --breakpoint-3xl: 112rem;
+}
+
+/* ------------------------------------------------------------------
+   Base
+   ------------------------------------------------------------------ */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scroll-padding-top: 6rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    @apply bg-cream text-ink font-sans antialiased;
+    font-feature-settings: "ss01", "kern";
+  }
+
+  ::selection {
+    background: var(--color-agua);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-agua-deep);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Utilidades de marca
+   ------------------------------------------------------------------ */
+@utility container-cala {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 96rem;
+  padding-inline: 1.25rem;
+  @media (width >= 40rem) {
+    padding-inline: 2rem;
+  }
+  @media (width >= 80rem) {
+    padding-inline: 3.5rem;
+  }
+}
+
+/* Titular de gran formato: ancho estrecho y óptico alto */
+@utility display {
+  font-family: var(--font-display);
+  font-variation-settings: "opsz" 96, "wdth" 84;
+  font-weight: 600;
+  letter-spacing: -0.022em;
+  line-height: 0.92;
+}
+
+@utility display-wide {
+  font-family: var(--font-display);
+  font-variation-settings: "opsz" 96, "wdth" 100;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* Palabra destacada en serif itálica */
+@utility accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  font-variation-settings: normal;
+}
+
+/* Etiqueta pequeña tipo plano/carta náutica */
+@utility label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------------------
+   Animaciones (todas respetan prefers-reduced-motion)
+   ------------------------------------------------------------------ */
+
+/* Aparición al hacer scroll. Solo se oculta si hay JS. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 1.25rem, 0);
+  transition:
+    opacity 0.9s var(--ease-out-soft),
+    transform 0.9s var(--ease-out-soft);
+  transition-delay: calc(var(--reveal-delay, 0) * 1ms);
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Línea que se dibuja de izquierda a derecha */
+.js [data-reveal="line"] {
+  opacity: 1;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.2s var(--ease-out-soft);
+}
+.js [data-reveal="line"].is-visible {
+  transform: scaleX(1);
+}
+
+/* Tachado que aparece al entrar en pantalla */
+.strike {
+  position: relative;
+  display: inline-block;
+}
+.strike::after {
+  content: "";
+  position: absolute;
+  left: -0.04em;
+  right: -0.04em;
+  top: 54%;
+  height: max(2px, 0.06em);
+  background: currentColor;
+  transform-origin: left center;
+  transition: transform 0.9s var(--ease-out-soft);
+  transition-delay: calc(var(--reveal-delay, 0) * 1ms + 250ms);
+}
+.js .strike::after {
+  transform: scaleX(0);
+}
+.js .is-visible .strike::after,
+.js .strike.is-visible::after {
+  transform: scaleX(1);
+}
+
+/* Entrada del hero, sin depender de JS */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.35em, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.hero-rise {
+  animation: rise 1.1s var(--ease-out-soft) both;
+  animation-delay: calc(var(--d, 0) * 1ms);
+}
+
+/* Titulares principales: solo desplazamiento, sin opacidad,
+   para no retrasar el Largest Contentful Paint */
+@keyframes slide {
+  from {
+    transform: translate3d(0, 0.18em, 0);
+  }
+  to {
+    transform: none;
+  }
+}
+.hero-slide {
+  animation: slide 1.1s var(--ease-out-soft) both;
+  animation-delay: calc(var(--d, 0) * 1ms);
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: var(--len, 1000);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.draw {
+  stroke-dasharray: var(--len, 1000);
+  animation: draw 2.2s var(--ease-out-soft) both;
+  animation-delay: calc(var(--d, 0) * 1ms);
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-14deg);
+  }
+}
+.drift {
+  transform-box: view-box;
+  animation: drift 14s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+.blink {
+  animation: blink 2.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Fig. 02 — retícula de decisiones */
+.dotfield .hit {
+  transition: fill 0.8s var(--ease-out-soft);
+}
+.dotfield .hit-ring {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0.4);
+  transition:
+    opacity 0.8s var(--ease-out-soft),
+    transform 0.8s var(--ease-out-soft);
+}
+.dotfield.is-visible .hit,
+html:not(.js) .dotfield .hit {
+  fill: var(--color-agua);
+}
+.dotfield.is-visible .hit-ring,
+html:not(.js) .dotfield .hit-ring {
+  opacity: 1;
+  transform: none;
+}
+
+/* Textos legales */
+.legal {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: rgb(23 23 23 / 0.85);
+}
+.legal h2 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  margin-top: 3rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-line);
+}
+.legal h2:first-child {
+  margin-top: 0;
+}
+.legal p,
+.legal ul {
+  margin-top: 1rem;
+}
+.legal ul {
+  list-style: none;
+  padding: 0;
+}
+.legal li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-top: 0.4rem;
+}
+.legal li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-agua-deep);
+}
+.legal a {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--color-agua-deep);
+  text-underline-offset: 4px;
+}
+.legal mark {
+  background: var(--color-agua-soft);
+  color: inherit;
+  padding: 0 0.2em;
+}
