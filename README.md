@@ -2,7 +2,7 @@
 
 Next.js 16 (App Router) · TypeScript · Tailwind CSS 4. Sin librerías de animación: las transiciones son CSS y un único `IntersectionObserver`.
 
-La web se exporta como **sitio estático** (`out/`) y se publica en **Cloudflare Pages**. El formulario lo atiende una Pages Function (`functions/api/contacto.ts`).
+La web se exporta como **sitio estático** (`out/`) y se publica en **Cloudflare** (Workers o Pages). El formulario lo atiende `worker/index.ts` en Workers o `functions/api/contacto.ts` en Pages.
 
 ```bash
 npm install
@@ -11,7 +11,8 @@ npm run build      # producción
 npm run lint       # ESLint
 npm run typecheck  # TypeScript
 npm run placeholders  # regenera las imágenes placeholder de proyectos
-npm run preview    # build + simulación local de Cloudflare Pages (incluye el formulario)
+npm run preview    # build + simulación local de Cloudflare (incluye el formulario)
+npm run deploy     # publica en Cloudflare Workers (requiere sesión de wrangler)
 ```
 
 ## Estructura
@@ -40,18 +41,19 @@ functions/api/contacto.ts formulario: validación + envío por email (Resend)
 - **Textos legales:** completa los datos resaltados (`<mark>`) en aviso legal y privacidad.
 - **Cookies:** la web no usa cookies de terceros; si se añade analítica, hará falta banner de consentimiento.
 
-## Publicar en Cloudflare Pages
+## Publicar en Cloudflare
 
-1. Cloudflare → **Workers & Pages** → **Create** → pestaña **Pages** → **Connect to Git** → repositorio `calastudio`.
-2. Configuración de build:
-   - Production branch: la rama que quieras publicar
-   - Framework preset: **None**
-   - Build command: `npm run build`
-   - Build output directory: `out`
-3. Variables (Settings → Variables and Secrets), para producción:
-   - `NEXT_PUBLIC_SITE_URL` = `https://tudominio.es`
-   - `RESEND_API_KEY` (secreto), `CONTACT_TO`, `CONTACT_FROM` — envío del formulario con [Resend](https://resend.com).
-     Sin estas tres, el formulario muestra un aviso y el email de contacto.
-4. **Custom domains** → añade tu dominio (si ya está en Cloudflare, los DNS se configuran solos).
+### Opción A — Workers (la que usa `wrangler deploy`)
 
-Cada push a la rama de producción publica una versión nueva; las demás ramas generan URLs de previsualización.
+`wrangler.jsonc` ya lo configura todo: `npx wrangler deploy` compila la web (`npm run build`), sube `out/` como archivos estáticos y publica `worker/index.ts`, que atiende el formulario.
+
+- El campo `name` de `wrangler.jsonc` debe coincidir con el nombre del Worker en Cloudflare.
+- Workers & Pages → tu Worker → **Settings → Build**: Deploy command `npx wrangler deploy` (Build command vacío).
+- Variables de compilación (Settings → Build → Variables): `NEXT_PUBLIC_SITE_URL`.
+- Variables del Worker (Settings → Variables and Secrets): `RESEND_API_KEY` (secreto), `CONTACT_TO`, `CONTACT_FROM`.
+
+### Opción B — Pages
+
+Build command `npm run build`, output `out`. El formulario lo atiende `functions/api/contacto.ts`. Mismas variables.
+
+Sin `RESEND_API_KEY`, `CONTACT_TO` y `CONTACT_FROM`, el formulario muestra un aviso con el email de contacto.
