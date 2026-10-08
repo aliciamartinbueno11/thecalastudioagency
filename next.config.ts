@@ -1,9 +1,12 @@
 import type { NextConfig } from "next";
 
+// Exportación estática para Cloudflare Pages (carpeta `out/`).
+// El formulario lo atiende la Pages Function de /functions/api/contacto.ts.
 const nextConfig: NextConfig = {
-  poweredByHeader: false,
+  output: "export",
   images: {
-    formats: ["image/avif", "image/webp"],
+    // Las imágenes ya se sirven optimizadas en WebP desde /public
+    unoptimized: true,
   },
 };
 

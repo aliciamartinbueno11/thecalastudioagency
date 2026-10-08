@@ -1,4 +1,5 @@
-import { serviceOptions } from "@/data/services";
+// Import relativo: este archivo también lo usa la Pages Function (sin alias @/)
+import { serviceOptions } from "../data/services";
 
 export type ContactPayload = {
   name: string;
