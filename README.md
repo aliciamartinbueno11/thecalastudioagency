@@ -35,7 +35,7 @@ functions/api/contacto.ts formulario: validación + envío por email (Resend)
 
 ## Tareas antes de publicar
 
-- **Dominio:** define `NEXT_PUBLIC_SITE_URL` (por defecto `https://calastudio.es`).
+- **Dominio:** define `NEXT_PUBLIC_SITE_URL` (por defecto `https://thecalastudio.com`).
 - **Datos de contacto y redes:** `src/data/site.ts` (email, Instagram, LinkedIn, coordenadas del estudio).
 - **Proyectos:** edita `src/data/projects.ts` y reemplaza las imágenes en `public/images/proyectos/`. Cada proyecto nuevo genera su página `/proyectos/[slug]` automáticamente.
 - **Textos legales:** completa los datos resaltados (`<mark>`) en aviso legal y privacidad.
@@ -50,10 +50,10 @@ functions/api/contacto.ts formulario: validación + envío por email (Resend)
 - El campo `name` de `wrangler.jsonc` debe coincidir con el nombre del Worker en Cloudflare.
 - Workers & Pages → tu Worker → **Settings → Build**: Deploy command `npx wrangler deploy` (Build command vacío).
 - Variables de compilación (Settings → Build → Variables): `NEXT_PUBLIC_SITE_URL`.
-- Variables del Worker (Settings → Variables and Secrets): `RESEND_API_KEY` (secreto), `CONTACT_TO`, `CONTACT_FROM`.
+- Variables del Worker (Settings → Variables and Secrets): `RESEND_API_KEY` (secreto). Los mensajes llegan a `hola@thecalastudio.com` desde `web@thecalastudio.com`; se pueden cambiar con `CONTACT_TO` y `CONTACT_FROM`.
 
 ### Opción B — Pages
 
 Build command `npm run build`, output `out`. El formulario lo atiende `functions/api/contacto.ts`. Mismas variables.
 
-Sin `RESEND_API_KEY`, `CONTACT_TO` y `CONTACT_FROM`, el formulario muestra un aviso con el email de contacto.
+Sin `RESEND_API_KEY`, el formulario muestra un aviso con el email de contacto.

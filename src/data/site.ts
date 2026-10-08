@@ -5,9 +5,9 @@ export const site = {
   description:
     "Estrategia, redes sociales, publicidad, web, creatividad y automatización para marcas que quieren hacer marketing con criterio.",
   // Cambia el dominio en la variable de entorno NEXT_PUBLIC_SITE_URL al publicar.
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://calastudio.es",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://thecalastudio.com",
   locale: "es_ES",
-  email: "hola@calastudio.es",
+  email: "hola@thecalastudio.com",
   phone: "",
   // Coordenadas que aparecen como detalle gráfico. Sustitúyelas por las del estudio.
   coordinates: { lat: "39°28′N", lng: "0°22′O" },

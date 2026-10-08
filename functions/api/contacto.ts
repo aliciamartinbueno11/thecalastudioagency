@@ -6,10 +6,13 @@
  *
  * Variables (Cloudflare → tu proyecto de Pages → Settings → Variables and Secrets):
  *   RESEND_API_KEY  clave de https://resend.com (secreto)
- *   CONTACT_TO      email que recibe los mensajes, p. ej. hola@calastudio.es
- *   CONTACT_FROM    remitente verificado en Resend, p. ej. "Web Cala Studio <web@calastudio.es>"
+ *   CONTACT_TO      (opcional) email que recibe los mensajes. Por defecto, hola@thecalastudio.com
+ *   CONTACT_FROM    (opcional) remitente verificado en Resend. Por defecto, web@thecalastudio.com
  */
 import { validateContact, type ContactPayload } from "../../src/lib/contact";
+
+const DEFAULT_TO = "hola@thecalastudio.com";
+const DEFAULT_FROM = "Web Cala Studio <web@thecalastudio.com>";
 
 type Env = {
   RESEND_API_KEY?: string;
@@ -53,8 +56,8 @@ export async function onRequestPost({ request, env }: Context) {
   const errors = validateContact(data);
   if (Object.keys(errors).length > 0) return json({ ok: false, errors }, 422);
 
-  if (!env.RESEND_API_KEY || !env.CONTACT_TO || !env.CONTACT_FROM) {
-    console.error("[contacto] Faltan RESEND_API_KEY, CONTACT_TO o CONTACT_FROM");
+  if (!env.RESEND_API_KEY) {
+    console.error("[contacto] Falta RESEND_API_KEY");
     return json({ ok: false, error: "Formulario no configurado." }, 503);
   }
 
@@ -81,8 +84,8 @@ export async function onRequestPost({ request, env }: Context) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      from: env.CONTACT_FROM,
-      to: env.CONTACT_TO,
+      from: env.CONTACT_FROM || DEFAULT_FROM,
+      to: env.CONTACT_TO || DEFAULT_TO,
       reply_to: data.email,
       subject: `Nuevo proyecto: ${data.name}${data.company ? ` (${data.company})` : ""}`,
       html,
