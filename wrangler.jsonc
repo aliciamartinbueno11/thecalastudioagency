@@ -4,6 +4,9 @@
   "name": "thecalastudioagency",
   "compatibility_date": "2025-09-01",
   "main": "worker/index.ts",
+  // Conserva las variables creadas en el panel de Cloudflare (p. ej. RESEND_API_KEY)
+  // en cada despliegue desde GitHub
+  "keep_vars": true,
   // `wrangler deploy` compila la web antes de publicarla
   "build": {
     "command": "npm run build"
