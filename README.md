@@ -57,3 +57,12 @@ functions/api/contacto.ts formulario: validación + envío por email (Resend)
 Build command `npm run build`, output `out`. El formulario lo atiende `functions/api/contacto.ts`. Mismas variables.
 
 Sin `RESEND_API_KEY`, el formulario muestra un aviso con el email de contacto.
+
+## Cala Weddings (`/bodas`)
+
+Segunda línea de negocio, con identidad propia (paleta lino/arena/piedra, serif editorial Instrument Serif cargada solo en `/bodas`) y el aguamarina como acento de conexión.
+
+- Contenidos: `src/data/weddings.ts` (catálogo A–F, proceso, preguntas frecuentes, inspiración).
+- Componentes: `src/components/weddings/`.
+- Formulario: `POST /api/bodas` (`functions/api/bodas.ts`), mismo envío por Resend que `/api/contacto`; asunto «Boda: nombres · fecha».
+- Imágenes: `public/images/bodas/`. Las actuales son **diseños conceptuales** (pareja ficticia «Clara & Teo») generados con `scripts/generate-wedding-concepts.mjs`. Sustitúyelas por fotos reales manteniendo las rutas, o añade trabajos nuevos en `weddingWorks` con `kind: "proyecto"`.

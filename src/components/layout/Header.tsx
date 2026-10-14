@@ -56,7 +56,7 @@ export function Header() {
             <Logo />
           </Link>
 
-          <nav aria-label="Principal" className="hidden lg:block">
+          <nav aria-label="Principal" className="hidden xl:block">
             <ul className="flex items-center gap-1">
               {mainNav.map((item, i) => (
                 <li key={item.href}>
@@ -84,7 +84,7 @@ export function Header() {
               aria-expanded={open}
               aria-controls="menu-movil"
               onClick={() => setOpen((v) => !v)}
-              className="relative z-10 flex h-11 cursor-pointer items-center gap-3 rounded-full border border-ink/20 pl-4 pr-3 text-sm font-medium lg:hidden"
+              className="relative z-10 flex h-11 cursor-pointer items-center gap-3 rounded-full border border-ink/20 pl-4 pr-3 text-sm font-medium xl:hidden"
             >
               <span>{open ? "Cerrar" : "Menú"}</span>
               <span aria-hidden="true" className="relative block h-3 w-5">

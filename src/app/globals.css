@@ -18,6 +18,15 @@
   --color-line: rgb(23 23 23 / 0.14);
   --color-line-dark: rgb(248 247 242 / 0.16);
 
+  /* Cala Weddings: paleta cálida (lino, arena, piedra) con el agua como acento */
+  --color-linen: #faf6ef;
+  --color-sand: #ece4d6;
+  --color-stone: #d6cbb9;
+  --color-umber: #24201b;
+  --color-umber-soft: #675f55;   /* texto secundario (AA sobre lino y arena) */
+  --color-sea: #2b6f66;          /* acento de bodas (AA sobre lino) */
+  --color-line-warm: rgb(36 32 27 / 0.16);
+
   --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
@@ -124,6 +133,26 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-variant-numeric: tabular-nums;
+}
+
+/* Serif editorial de Cala Weddings */
+@utility serif-display {
+  /* La variable se define en el contenedor de /bodas; fuera de él cae a Instrument Serif */
+  font-family: var(--font-wedding-serif, var(--font-instrument-serif)), ui-serif, Georgia, serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: -0.015em;
+  line-height: 0.98;
+}
+
+/* Etiqueta espaciada de Cala Weddings */
+@utility label-wide {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  line-height: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 
 @utility tabular {

@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "", priority: 1 },
     { path: "/servicios", priority: 0.9 },
     { path: "/proyectos", priority: 0.8 },
+    { path: "/bodas", priority: 0.9 },
     { path: "/nosotros", priority: 0.7 },
     { path: "/contacto", priority: 0.9 },
     ...projects.map((p) => ({ path: `/proyectos/${p.slug}`, priority: 0.6 })),
