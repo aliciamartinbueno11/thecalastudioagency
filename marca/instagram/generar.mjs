@@ -53,7 +53,7 @@ ${[260, 310, 370, 440, 520, 610].map((r, i) => `<path d="M${r} 480A${r} ${r} 0 0
 <circle cx="512" cy="112" r="24" fill="none" stroke="${C.deep}" stroke-width="3"/><circle cx="512" cy="112" r="6" fill="${C.deep}"/>
 <text x="490" y="190" font-size="24" font-weight="500" fill="${C.ink}" text-anchor="end">Objetivo</text></svg>`;
 
-const W = 1080, H = 1350, SH = 1920;
+const W = 1080, H = 1440, SH = 1920;
 
 const pieces = [
   // ---------- Foto de perfil ----------
@@ -69,26 +69,26 @@ const pieces = [
 
   { name: "post-2-menos-humo", w: W, h: H, html: base(W, H, C.cream, `<div class="pad">
     ${header('<span style="color:#0B6B61">(01)</span> Filosofía', "Cala Studio")}
-    <h1 class="d" style="font-size:200px;margin-top:110px">Menos <span class="s" style="color:${C.mute}">humo</span>.<br>Más <span class="a" style="color:${C.deep}">criterio.</span></h1>
-    <div style="margin-top:100px;border-top:2px solid ${C.line}">
+    <h1 class="d" style="font-size:200px;margin-top:150px">Menos <span class="s" style="color:${C.mute}">humo</span>.<br>Más <span class="a" style="color:${C.deep}">criterio.</span></h1>
+    <div style="margin-top:170px;border-top:2px solid ${C.line}">
       ${["Publicar por publicar", "Invertir por invertir", "Usar herramientas por moda"].map((t) => `<div style="display:flex;gap:28px;align-items:baseline;border-bottom:2px solid ${C.line};padding:28px 0;font-size:46px;color:rgba(23,23,23,.7)"><span style="font-size:28px;color:${C.mute}">✕</span><span class="s">${t}</span></div>`).join("")}
     </div>
     ${footer()}</div>`) },
 
   { name: "post-3-servicios", w: W, h: H, html: base(W, H, C.paper, `<div class="pad">
     ${header('<span style="color:#0B6B61">(02)</span> Servicios', "Lo que hacemos")}
-    <h1 class="d" style="font-size:118px;margin-top:70px">Lo que hacemos,<br><span class="a" style="color:${C.deep}">sin rodeos.</span></h1>
-    <div style="margin-top:60px;border-top:2px solid ${C.ink}">
-      ${["Estrategia", "Redes sociales", "Publicidad digital", "Web & Landing Pages", "Branding & Creatividad", "Automatización & IA"].map((t, i) => `<div style="display:flex;gap:40px;align-items:baseline;border-bottom:2px solid ${C.line};padding:20px 0"><span class="l" style="color:${i === 0 ? "#0B6B61" : C.mute};width:60px">0${i + 1}</span><span style="font-family:'Bricolage Grotesque';font-weight:500;font-size:56px;letter-spacing:-.02em">${t}</span></div>`).join("")}
+    <h1 class="d" style="font-size:124px;margin-top:100px">Lo que hacemos,<br><span class="a" style="color:${C.deep}">sin rodeos.</span></h1>
+    <div style="margin-top:70px;border-top:2px solid ${C.ink}">
+      ${["Estrategia", "Redes sociales", "Publicidad digital", "Web & Landing Pages", "Branding & Creatividad", "Automatización & IA"].map((t, i) => `<div style="display:flex;gap:40px;align-items:baseline;border-bottom:2px solid ${C.line};padding:22px 0"><span class="l" style="color:${i === 0 ? "#0B6B61" : C.mute};width:60px">0${i + 1}</span><span style="font-family:'Bricolage Grotesque';font-weight:500;font-size:56px;letter-spacing:-.02em">${t}</span></div>`).join("")}
     </div>
     ${footer()}</div>`) },
 
   { name: "post-4-metodo", w: W, h: H, html: base(W, H, C.cream, `<div class="pad">
     ${header('<span style="color:#0B6B61">(03)</span> Cómo trabajamos', "Método")}
-    <h1 class="d" style="font-size:104px;margin-top:70px">Cuatro pasos.<br><span class="a" style="color:${C.deep}">Siempre en este orden.</span></h1>
+    <h1 class="d" style="font-size:110px;margin-top:100px">Cuatro pasos.<br><span class="a" style="color:${C.deep}">Siempre en este orden.</span></h1>
     <div style="margin-top:56px;position:relative;padding-left:56px">
       <span style="position:absolute;left:9px;top:20px;bottom:40px;width:2px;background:rgba(23,23,23,.25)"></span>
-      ${[["Entender", "El negocio, el cliente y qué está pasando."], ["Ordenar", "Prioridades, canales y objetivos."], ["Crear", "Campañas, contenido y diseño."], ["Medir", "Qué funciona y dónde invertir."]].map(([t, d], i) => `<div style="position:relative;margin-bottom:34px"><span style="position:absolute;left:-56px;top:22px;width:20px;height:20px;border-radius:50%;border:2px solid ${C.ink};background:${i === 3 ? C.deep : C.cream}"></span><div class="d" style="font-size:88px">${t}<span style="color:${C.deep}">.</span></div><div style="font-size:32px;color:${C.mute};margin-top:8px">${d}</div></div>`).join("")}
+      ${[["Entender", "El negocio, el cliente y qué está pasando."], ["Ordenar", "Prioridades, canales y objetivos."], ["Crear", "Campañas, contenido y diseño."], ["Medir", "Qué funciona y dónde invertir."]].map(([t, d], i) => `<div style="position:relative;margin-bottom:48px"><span style="position:absolute;left:-56px;top:22px;width:20px;height:20px;border-radius:50%;border:2px solid ${C.ink};background:${i === 3 ? C.deep : C.cream}"></span><div class="d" style="font-size:88px">${t}<span style="color:${C.deep}">.</span></div><div style="font-size:32px;color:${C.mute};margin-top:8px">${d}</div></div>`).join("")}
     </div>
     ${footer()}</div>`) },
 

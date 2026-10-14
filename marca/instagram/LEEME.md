@@ -54,7 +54,8 @@ para que en el perfil queden así:
 [4 Método]               [5 Diferencia]   [6 Contacto]
 ```
 
-Formato 4:5 (1080×1350). Al subirlas, elige el recorte **original**, no el cuadrado.
+Formato **3:4 (1080×1440)**, el que usa ahora la cuadrícula del perfil: se ven enteras, sin recortes.
+Al subirlas, pulsa el icono de recorte y elige **original** (no el cuadrado).
 
 ### Post 6 · `post-6-contacto.png` (se publica primero)
 
