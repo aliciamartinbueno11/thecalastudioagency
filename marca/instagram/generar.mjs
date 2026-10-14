@@ -62,7 +62,7 @@ const pieces = [
 
   // ---------- Publicaciones (4:5) ----------
   { name: "post-1-marketing-con-cabeza", w: W, h: H, html: base(W, H, C.cream, `<div class="pad">
-    ${header("Agencia de marketing digital", "39°28′N · 0°22′O")}
+    ${header("Agencia de marketing digital", "36°44′N · 3°52′O")}
     <h1 class="d" style="font-size:148px;margin-top:90px">Marketing<br>con <span class="a" style="color:${C.deep}">cabeza.</span><br>Creatividad<br>con <span class="a" style="color:${C.deep}">intención.</span></h1>
     <div style="position:absolute;right:0;bottom:120px">${chart(430)}</div>
     ${footer()}</div>`) },
