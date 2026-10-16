@@ -291,6 +291,13 @@ const lf = (file: string, alt: string, width: number, height: number): WeddingIm
   height,
 });
 
+const ay = (file: string, alt: string, width: number, height: number): WeddingImage => ({
+  src: `/images/bodas/agua-y-oro/${file}.webp`,
+  alt,
+  width,
+  height,
+});
+
 export const weddingProjects: WeddingProject[] = [
   {
     slug: "linea-fina",
@@ -447,6 +454,137 @@ export const weddingProjects: WeddingProject[] = [
     ],
     closing: "Pocas palabras, mucho blanco y una sola línea que lo une todo.",
     privacyNote: "Por privacidad, los nombres, fechas, lugares y datos de invitados están recortados o difuminados.",
+  },
+  {
+    slug: "agua-y-oro",
+    title: "Agua y",
+    titleEm: "oro",
+    category: "Papelería de boda",
+    place: "Costa de Málaga",
+    year: "2024",
+    excerpt:
+      "Acuarela azul con vetas de pan de oro, de la invitación a la mesa: programa ilustrado, minutas, números de mesa y un gracias en cada plato.",
+    intro:
+      "Una boda junto al mar pintada en acuarela. Azul de agua y vetas de oro que pasan de la invitación a la mesa, donde cada invitado encontró su sitio, su menú y un gracias.",
+    palette: "Azul agua, pan de oro y blanco",
+    cover: ay(
+      "mesa-montada",
+      "Mesa de boda montada: minuta de acuarela azul sobre el plato, tarjeta Thank you, número de mesa 5 y bajoplatos azul marino",
+      2000,
+      1333,
+    ),
+    coverCaption: "La mesa el día de la boda: minuta, tarjeta de agradecimiento y número de mesa.",
+    chapters: [
+      {
+        numeral: "I",
+        title: "La",
+        titleEm: "invitación",
+        text: "Dos caras. Delante, el texto de la pareja sobre una mancha de acuarela. Detrás, el día contado como un programa ilustrado: llegada, ceremonia, cóctel, almuerzo y fiesta, cada momento con su icono.",
+        blocks: [
+          {
+            kind: "pair",
+            figures: [
+              {
+                image: ay(
+                  "invitacion-frente",
+                  "Frente de la invitación: acuarela azul con vetas doradas y texto en blanco",
+                  1143,
+                  1600,
+                ),
+                plate: true,
+              },
+              {
+                image: ay(
+                  "invitacion-reverso",
+                  "Reverso de la invitación: programa del día en línea de tiempo con iconos de anillos, cóctel, almuerzo y fiesta",
+                  1143,
+                  1600,
+                ),
+                plate: true,
+              },
+            ],
+            caption: "Invitación, frente y reverso con el programa del día.",
+          },
+        ],
+      },
+      {
+        numeral: "II",
+        title: "La",
+        titleEm: "mesa",
+        text: "La misma acuarela se repite en cada sitio: el número de mesa en un caballete, la minuta sobre el plato y una tarjeta de agradecimiento junto a un botecito de arena y conchas para llevarse a casa.",
+        blocks: [
+          {
+            kind: "single",
+            size: "wide",
+            figure: {
+              image: ay(
+                "mesa-detalle",
+                "Detalle de la mesa: número de mesa 5 en acuarela azul y oro, tarjeta Thank you y botecito de cristal con arena y conchas",
+                1180,
+                735,
+              ),
+            },
+            caption: "Número de mesa, tarjeta Thank you! y detalle para invitados.",
+          },
+          {
+            kind: "pair",
+            figures: [
+              {
+                image: ay(
+                  "minuta",
+                  "Minuta alargada con entrantes, plato principal, postres y bebidas en cursiva sobre una pincelada azul y dorada",
+                  861,
+                  1600,
+                ),
+                plate: true,
+              },
+              {
+                image: ay(
+                  "gracias",
+                  "Tarjeta vertical con la palabra Gracias en azul entre dos manchas de acuarela",
+                  576,
+                  1600,
+                ),
+                plate: true,
+              },
+            ],
+            caption: "Minuta y tarjeta de agradecimiento vertical.",
+          },
+        ],
+      },
+      {
+        numeral: "III",
+        title: "Cada uno,",
+        titleEm: "su sitio",
+        text: "El seating plan recibe a los invitados con un título en arco y siete mesas sobre la acuarela.",
+        blocks: [
+          {
+            kind: "single",
+            size: "wide",
+            figure: {
+              image: ay(
+                "seating",
+                "Seating plan con el título Busca en tu mesa en arco y siete recuadros de mesa sobre acuarela azul",
+                1365,
+                1600,
+              ),
+              plate: true,
+            },
+            caption: "Seating plan «Busca en tu mesa».",
+          },
+        ],
+      },
+    ],
+    services: [
+      { name: "Invitación", detail: "Frente y reverso con programa ilustrado" },
+      { name: "Minutas" },
+      { name: "Números de mesa" },
+      { name: "Tarjetas de agradecimiento", detail: "Vertical y de mesa" },
+      { name: "Seating plan" },
+      { name: "Detalles para invitados", detail: "Botes de arena y conchas" },
+    ],
+    closing: "Un mismo trazo de agua y oro, de la primera invitación al último plato.",
+    privacyNote: "Por privacidad, los nombres, fechas, lugares, teléfonos y datos de invitados están ocultos o recortados.",
   },
 ];
 
