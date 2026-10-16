@@ -20,8 +20,8 @@ export function WeddingsInspiration() {
             </h2>
             {!hasRealProjects ? (
               <p data-reveal className="mt-6 max-w-xl text-lg leading-relaxed text-umber/80">
-                Cala Weddings acaba de nacer. Mientras llegan las primeras bodas, os enseñamos diseños
-                conceptuales creados por nosotros para que veáis nuestra forma de trabajar.
+                Además de las bodas reales, diseñamos conceptos propios para explorar ideas nuevas.
+                Estos son algunos, para que veáis nuestra forma de trabajar.
               </p>
             ) : null}
           </div>

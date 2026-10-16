@@ -5,6 +5,7 @@ import { weddingSerif } from "@/lib/fonts-weddings";
 import { WeddingsHero } from "@/components/weddings/WeddingsHero";
 import { WeddingsPhilosophy } from "@/components/weddings/WeddingsPhilosophy";
 import { WeddingsCatalog } from "@/components/weddings/WeddingsCatalog";
+import { WeddingsProjects } from "@/components/weddings/WeddingsProjects";
 import { WeddingsIdentity } from "@/components/weddings/WeddingsIdentity";
 import { WeddingsInspiration } from "@/components/weddings/WeddingsInspiration";
 import { WeddingsProcess } from "@/components/weddings/WeddingsProcess";
@@ -78,6 +79,7 @@ export default function BodasPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <WeddingsHero />
       <WeddingsPhilosophy />
+      <WeddingsProjects />
       <WeddingsCatalog />
       <WeddingsIdentity />
       <WeddingsInspiration />

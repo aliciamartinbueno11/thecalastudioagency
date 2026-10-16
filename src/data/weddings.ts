@@ -241,3 +241,213 @@ export const weddingWorks: WeddingWork[] = [
     image: { src: "/images/bodas/concepto-seating.webp", alt: "Diseño conceptual: cartel de bienvenida y seating plan de una boda", width: 1200, height: 1500 },
   },
 ];
+
+/**
+ * Bodas reales (trabajos de Cala Studio).
+ * Cada proyecto genera su página en /bodas/[slug].
+ * Privacidad: sin nombres de la pareja ni de invitados, sin fecha exacta ni lugares concretos.
+ * Las imágenes llevan esos datos recortados o difuminados.
+ */
+export type WeddingImage = { src: string; alt: string; width: number; height: number };
+
+/** `plate`: la pieza se muestra sobre fondo arena, como un diseño apoyado en la mesa. */
+export type WeddingFigure = { image: WeddingImage; plate?: boolean };
+
+export type WeddingBlock =
+  | { kind: "pair"; figures: [WeddingFigure, WeddingFigure]; caption: string }
+  | { kind: "single"; figure: WeddingFigure; caption: string; size: "wide" | "full" }
+  | { kind: "duo"; figures: [WeddingFigure, WeddingFigure]; captions: [string, string] };
+
+export type WeddingChapter = {
+  numeral: string;
+  title: string;
+  titleEm: string;
+  text: string;
+  blocks: WeddingBlock[];
+};
+
+export type WeddingProject = {
+  slug: string;
+  title: string;
+  titleEm: string;
+  category: string;
+  place: string;
+  year: string;
+  excerpt: string;
+  intro: string;
+  palette: string;
+  cover: WeddingImage;
+  coverCaption: string;
+  chapters: WeddingChapter[];
+  services: { name: string; detail?: string }[];
+  closing: string;
+  privacyNote: string;
+};
+
+const lf = (file: string, alt: string, width: number, height: number): WeddingImage => ({
+  src: `/images/bodas/linea-fina/${file}.webp`,
+  alt,
+  width,
+  height,
+});
+
+export const weddingProjects: WeddingProject[] = [
+  {
+    slug: "linea-fina",
+    title: "Línea",
+    titleEm: "fina",
+    category: "Papelería de boda",
+    place: "Costa de Málaga",
+    year: "2025",
+    excerpt:
+      "Sobres verdes cerrados a mano con lacre y flor seca, y una papelería del día en blanco y negro, dibujada a línea.",
+    intro:
+      "Una boda junto al mar contada en dos tiempos. Primero, sobres verdes cerrados a mano con lacre y flor seca. Después, una papelería del día en blanco y negro, dibujada a línea.",
+    palette: "Verde oliva, oro viejo, blanco y tinta",
+    cover: lf(
+      "sobres-lacre",
+      "Sobres de papel verde con borde rasgado, cerrados con sello de lacre dorado y un ramillete de flores secas blancas",
+      1012,
+      1800,
+    ),
+    coverCaption: "Sobres de papel verjurado con borde rasgado, lacre con rama de olivo y flor seca.",
+    chapters: [
+      {
+        numeral: "I",
+        title: "El primer",
+        titleEm: "aviso",
+        text: "El save the date llegó al móvil en formato story. La invitación llegó a casa en un sobre verde atado con gasa de seda y una etiqueta de papel vegetal.",
+        blocks: [
+          {
+            kind: "pair",
+            figures: [
+              {
+                image: lf(
+                  "sobre-lazo",
+                  "Sobre verde atado con cinta de gasa color crema, flores secas y una etiqueta de papel vegetal que dice Nuestra boda",
+                  1350,
+                  1800,
+                ),
+              },
+              {
+                image: lf(
+                  "save-the-date",
+                  "Save the date vertical en blanco y negro con dos manos cerrando un candado",
+                  787,
+                  1400,
+                ),
+                plate: true,
+              },
+            ],
+            caption: "Sobre con lazo de gasa y etiqueta en vegetal. Save the date digital en formato story.",
+          },
+        ],
+      },
+      {
+        numeral: "II",
+        title: "La",
+        titleEm: "invitación",
+        text: "Una acuarela en verdes, agua y arena que recoge el color de los sobres. Tres columnas para lo esencial: ceremonia, fecha y banquete.",
+        blocks: [
+          {
+            kind: "single",
+            size: "wide",
+            figure: {
+              image: lf(
+                "invitacion",
+                "Invitación horizontal con fondo de acuarela verde y azul y tres columnas: Ceremonia, Septiembre y Banquete",
+                1282,
+                910,
+              ),
+              plate: true,
+            },
+            caption: "Invitación horizontal.",
+          },
+        ],
+      },
+      {
+        numeral: "III",
+        title: "El",
+        titleEm: "día",
+        text: "Para la celebración, el color se retira. Caligrafía para los títulos, una serif de alto contraste para el resto y una flor de línea que se repite de pieza en pieza.",
+        blocks: [
+          {
+            kind: "pair",
+            figures: [
+              {
+                image: lf(
+                  "carta-coctel",
+                  "Carta de cóctel con el título Cóctel en caligrafía y dos ramas florales de línea",
+                  1126,
+                  1400,
+                ),
+                plate: true,
+              },
+              {
+                image: lf(
+                  "minuta",
+                  "Minuta vertical con el título Menú en caligrafía, cuatro apartados y una flor de línea gris",
+                  917,
+                  1400,
+                ),
+                plate: true,
+              },
+            ],
+            caption: "Carta de cóctel y minuta individual.",
+          },
+          {
+            kind: "duo",
+            figures: [
+              {
+                image: lf(
+                  "cartel-mesa",
+                  "Detalle de cartel de mesa: la palabra Mesa en caligrafía sobre UNO en serif de gran tamaño",
+                  1080,
+                  740,
+                ),
+                plate: true,
+              },
+              {
+                image: lf(
+                  "etiqueta-vino",
+                  "Etiqueta vertical con el texto Por nosotros, por vosotros, por el amor y un corazón dibujado",
+                  991,
+                  1400,
+                ),
+                plate: true,
+              },
+            ],
+            captions: ["Cartel de mesa, detalle. Serie de diecisiete.", "Etiqueta para el vino de la casa."],
+          },
+          {
+            kind: "single",
+            size: "full",
+            figure: {
+              image: lf(
+                "minuta-pliego",
+                "Pliego con tres minutas verticales iguales con los apartados Cóctel, Menú y Bodega",
+                1400,
+                703,
+              ),
+              plate: true,
+            },
+            caption: "Minuta en pliego de tres para imprimir y cortar.",
+          },
+        ],
+      },
+    ],
+    services: [
+      { name: "Save the date", detail: "Digital, formato story" },
+      { name: "Invitación" },
+      { name: "Sobres y presentación", detail: "Lacre, flor seca, gasa y vegetal" },
+      { name: "Carta de cóctel" },
+      { name: "Minutas", detail: "Individual y en pliego" },
+      { name: "Carteles de mesa", detail: "Serie de 17" },
+      { name: "Etiqueta de vino" },
+    ],
+    closing: "Pocas palabras, mucho blanco y una sola línea que lo une todo.",
+    privacyNote: "Por privacidad, los nombres, fechas, lugares y datos de invitados están recortados o difuminados.",
+  },
+];
+
+export const getWeddingProject = (slug: string) => weddingProjects.find((p) => p.slug === slug);
