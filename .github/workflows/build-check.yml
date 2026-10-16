@@ -1,0 +1,19 @@
+name: build-check
+on:
+  push:
+    branches: [tmp/build-check]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+        continue-on-error: true
+      - run: npm run lint
+        continue-on-error: true
+      - run: npm run build
