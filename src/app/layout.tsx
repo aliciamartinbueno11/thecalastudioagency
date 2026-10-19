@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import Script from "next/script";
 import { site } from "@/data/site";
 import { bricolage, instrumentSans, instrumentSerif } from "@/lib/fonts";
 import { Footer } from "@/components/layout/Footer";
@@ -72,6 +73,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <main id="contenido">{children}</main>
         <Footer />
         <RevealObserver />
+        {/* Analítica web de Metricool (sin cookies) */}
+        <Script id="metricool" strategy="afterInteractive">
+          {`function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"323449fc55ead07edd0b8939f41607c6"})});`}
+        </Script>
       </body>
     </html>
   );
