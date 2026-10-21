@@ -14,15 +14,14 @@ export function Difference() {
             data-reveal
             className="display block text-[clamp(2.6rem,10.5vw,7.5rem)] text-cream/45 lg:text-[clamp(2.5rem,7.4vw,7.5rem)]"
           >
-            No necesitas hacer <span className="strike text-cream/70">más</span> marketing.
+            No necesitas <span className="strike text-cream/70">más</span> marketing.
           </span>
           <span
             data-reveal
             style={revealDelay(250)}
             className="display mt-4 block text-[clamp(2.6rem,10.5vw,7.5rem)] lg:mt-6 lg:text-[clamp(2.5rem,7.4vw,7.5rem)]"
           >
-            Necesitas saber qué marketing{" "}
-            <span className="accent text-agua">merece la pena</span> hacer.
+            Necesitas el que <span className="accent text-agua">merece la pena.</span>
           </span>
         </h2>
 

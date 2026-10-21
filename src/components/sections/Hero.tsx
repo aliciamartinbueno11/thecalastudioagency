@@ -3,7 +3,7 @@ import { cta, site } from "@/data/site";
 import { services } from "@/data/services";
 import { vars } from "@/lib/style";
 import { ButtonLink } from "@/components/ui/Button";
-import { ChartMark } from "@/components/graphics/ChartMark";
+import { HeroPlate } from "@/components/graphics/HeroPlate";
 
 export function Hero() {
   return (
@@ -11,10 +11,10 @@ export function Hero() {
       <div className="container-cala pb-12 pt-8 lg:pb-16 lg:pt-12">
         {/* Línea de metadatos */}
         <div className="label hero-rise flex items-center justify-between gap-4 border-b border-line pb-4 text-mute">
-          <span>Agencia de marketing digital</span>
-          <span className="hidden sm:inline">Estrategia — Contenido — Publicidad — Web — Tecnología</span>
+          <span>Agencia de marketing en Nerja</span>
+          <span className="hidden sm:inline">Axarquía y Málaga</span>
           <span className="tabular">
-            {site.coordinates.lat} <span className="hidden xs:inline">· {site.coordinates.lng}</span>
+            {site.coordinates.lat} <span className="hidden xs:inline">{site.coordinates.lng}</span>
           </span>
         </div>
 
@@ -36,13 +36,13 @@ export function Hero() {
           <div className="flex flex-col justify-between gap-10 lg:col-span-5">
             <div className="hero-slide" style={vars({ "--d": 360 })}>
               <p className="max-w-md text-lg leading-relaxed text-ink/80 sm:text-xl">
-                Estrategia, contenido, publicidad, web y tecnología para marcas que quieren hacer
-                las cosas bien.
+                Estrategia, redes, publicidad y web para negocios de Nerja, la Axarquía y Málaga que
+                quieren hacer las cosas bien.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-3">
-                <ButtonLink href={cta.primary.href}>{cta.primary.label}</ButtonLink>
-                <ButtonLink href={cta.secondary.href} variant="secondary">
-                  {cta.secondary.label}
+                <ButtonLink href={cta.quote.href}>{cta.quote.label}</ButtonLink>
+                <ButtonLink href="/servicios#paquetes" variant="secondary">
+                  Ver servicios y precios
                 </ButtonLink>
               </div>
             </div>
@@ -65,7 +65,7 @@ export function Hero() {
             </nav>
           </div>
 
-          <ChartMark className="hero-rise lg:col-span-6 lg:col-start-7" />
+          <HeroPlate className="hero-rise lg:col-span-6 lg:col-start-7" />
         </div>
       </div>
     </section>

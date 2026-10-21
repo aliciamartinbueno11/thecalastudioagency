@@ -22,18 +22,19 @@ export function About() {
           <h2
             id="nosotros-title"
             data-reveal
-            className="display-wide text-[clamp(2rem,4.6vw,4.25rem)] leading-[1.04] lg:col-span-9"
+            className="display text-[clamp(3rem,9vw,7.5rem)] lg:col-span-9"
           >
-            Cala Studio nace de una forma bastante sencilla de entender el marketing:{" "}
-            <span className="text-mute">escuchar primero,</span>{" "}
-            <span className="text-mute">pensar después</span> y{" "}
-            <span className="accent text-agua-deep">ejecutar con criterio.</span>
+            Escuchar, pensar, <span className="accent text-agua-deep">ejecutar.</span>
           </h2>
         </div>
 
         <div className="mt-16 grid gap-12 lg:mt-24 lg:grid-cols-12 lg:gap-8">
           <div data-reveal className="lg:col-span-4 lg:col-start-4">
-            <p className="text-lg leading-relaxed text-ink/80">
+            <p className="text-xl leading-snug text-ink">
+              Cala Studio nace de una forma sencilla de entender el marketing: escuchar primero,
+              pensar después y ejecutar con criterio.
+            </p>
+            <p className="mt-5 text-lg leading-relaxed text-ink/80">
               Trabajamos muy cerca de cada cliente, sin capas ni intermediarios. Hablas con quien
               hace el trabajo.
             </p>

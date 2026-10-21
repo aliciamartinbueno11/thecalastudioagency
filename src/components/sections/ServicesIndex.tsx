@@ -1,5 +1,6 @@
 import { services } from "@/data/services";
 import { cta } from "@/data/site";
+import Link from "next/link";
 import { ButtonLink } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ServiceItem } from "@/components/ui/ServiceItem";
@@ -26,9 +27,16 @@ export function ServicesIndex() {
           ))}
         </ul>
 
-        <div className="mt-10 flex justify-end">
+        <div className="mt-10 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+          <p className="text-lg text-ink/80">
+            Precios claros desde el principio, y{" "}
+            <Link href="/servicios#paquetes" className="underline decoration-agua decoration-2 underline-offset-[6px] hover:text-agua-ink">
+              paquetes con descuento
+            </Link>
+            .
+          </p>
           <ButtonLink href={cta.secondary.href} variant="link">
-            Ver servicios en detalle
+            Ver servicios y precios
           </ButtonLink>
         </div>
       </div>

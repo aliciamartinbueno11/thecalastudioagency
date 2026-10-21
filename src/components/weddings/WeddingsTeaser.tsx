@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { weddingPackages } from "@/data/weddings";
 import { Arrow } from "@/components/ui/Arrow";
 
 /** Bloque breve en la home: presenta Cala Weddings como segunda línea de negocio. */
@@ -15,6 +16,7 @@ export function WeddingsTeaser() {
           <p data-reveal className="mt-6 max-w-md text-lg leading-relaxed text-umber/80">
             Diseño integral para bodas: identidad, invitaciones, web con confirmación de asistencia y
             todo lo que se ve el gran día. Con el mismo criterio, para un momento muy distinto.
+            Paquetes desde {Math.min(...weddingPackages.map((p) => p.price))} €.
           </p>
           <Link
             href="/bodas"
@@ -27,8 +29,8 @@ export function WeddingsTeaser() {
         <div className="md:col-span-6 lg:col-span-5 lg:col-start-8">
           <div data-reveal className="relative mx-auto aspect-[4/5] max-w-md overflow-hidden rounded-t-[999px] bg-stone">
             <Image
-              src="/images/bodas/concepto-invitacion.webp"
-              alt="Diseño conceptual de Cala Weddings: suite de invitación de boda"
+              src="/images/bodas/linea-fina/sobres-lacre.webp"
+              alt="Sobres de papel verde con borde rasgado, cerrados con lacre dorado y flor seca: papelería de la boda «Línea fina»"
               fill
               sizes="(min-width: 768px) 40vw, 90vw"
               className="object-cover"

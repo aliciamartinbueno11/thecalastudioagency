@@ -13,7 +13,7 @@ const HITS = new Map([
 ]);
 
 /**
- * Fig. 02 — 84 cosas que se podrían hacer. Seis que merecen la pena.
+ * Fig. 03 — 84 cosas que se podrían hacer. Seis que merecen la pena.
  */
 export function DotField({ className }: { className?: string }) {
   const gap = 40;
@@ -57,7 +57,7 @@ export function DotField({ className }: { className?: string }) {
         })}
       </svg>
       <figcaption className="label mt-5 flex flex-wrap justify-between gap-x-6 gap-y-1 text-mute-dark">
-        <span>Fig. 02 — Todo lo que se podría hacer: 84</span>
+        <span>Fig. 03 — Todo lo que se podría hacer: 84</span>
         <span className="text-agua">Lo que merece la pena: 6</span>
       </figcaption>
     </figure>
