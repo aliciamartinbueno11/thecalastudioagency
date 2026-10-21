@@ -7,6 +7,7 @@ import { vars } from "@/lib/style";
  * el marco con el cuarto de círculo aguamarina, y encima el rumbo de la carta náutica.
  *
  * Foto: «Cala del Cañuelo, Nerja, 1», Triedros, CC BY-SA 4.0, vía Wikimedia Commons.
+ * Modificada (recorte y duotono aguamarina/crema); la versión modificada mantiene la misma licencia.
  */
 export function HeroPlate({ className }: { className?: string }) {
   // Coordenadas en la retícula de 100 × 125 (proporción 4:5)
@@ -93,7 +94,7 @@ export function HeroPlate({ className }: { className?: string }) {
           </span>
         </span>
         <span>
-          Foto:{" "}
+          Foto en duotono a partir de{" "}
           <a
             href="https://commons.wikimedia.org/wiki/File:Cala_del_Ca%C3%B1uelo,_Nerja,_1.jpg"
             className="underline underline-offset-2 hover:text-ink"
