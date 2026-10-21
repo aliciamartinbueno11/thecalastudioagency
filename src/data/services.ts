@@ -149,3 +149,96 @@ export const serviceOptions = [
   "Automatización",
   "Otro",
 ] as const;
+
+/**
+ * PAQUETES — varios servicios juntos con descuento.
+ * «Por separado» y «Ahorras» se calculan solos a partir de los precios de arriba;
+ * aquí solo se fija el precio del paquete.
+ */
+export type Package = {
+  slug: string;
+  name: string;
+  tagline: string;
+  /** Servicios que incluye (por slug), para calcular el precio por separado */
+  services: string[];
+  includes: string[];
+  price: { once?: number; monthly?: number };
+  featured?: boolean;
+};
+
+export const packages: Package[] = [
+  {
+    slug: "arranque",
+    name: "Arranque",
+    tagline: "Para negocios que empiezan o necesitan empezar de nuevo.",
+    services: ["estrategia", "branding-creatividad", "web-landing-pages"],
+    includes: [
+      "Plan de marketing con objetivos medibles",
+      "Identidad visual completa y guía de uso",
+      "Landing page optimizada para captar contactos",
+      "Analítica y SEO local básico",
+    ],
+    price: { once: 1490 },
+  },
+  {
+    slug: "dia-a-dia",
+    name: "Día a día",
+    tagline: "Redes y anuncios trabajando juntos, cada mes.",
+    services: ["redes-sociales", "publicidad-digital"],
+    includes: [
+      "Gestión de redes con calendario de contenido",
+      "Campañas en Meta y Google (gestión)",
+      "Creatividades para redes y anuncios",
+      "Un único informe mensual que se entiende",
+    ],
+    price: { monthly: 450 },
+    featured: true,
+  },
+  {
+    slug: "todo-el-marketing",
+    name: "Todo el marketing",
+    tagline: "Nos encargamos del marketing completo, con un plan detrás.",
+    services: ["estrategia", "redes-sociales", "publicidad-digital", "automatizacion-ia"],
+    includes: [
+      "Plan de estrategia inicial incluido",
+      "Gestión de redes y campañas",
+      "Una automatización de captación o seguimiento incluida",
+      "Reunión mensual de resultados",
+    ],
+    price: { monthly: 520 },
+  },
+];
+
+/** Precio de los servicios del paquete contratados por separado */
+export function packageSeparate(pkg: Package) {
+  const list = pkg.services.map((slug) => services.find((s) => s.slug === slug)!);
+  return {
+    once: list.filter((s) => !s.price.unit).reduce((sum, s) => sum + s.price.from, 0),
+    monthly: list.filter((s) => s.price.unit === "mes").reduce((sum, s) => sum + s.price.from, 0),
+  };
+}
+
+const eur = (n: number) => `${n.toLocaleString("es-ES")} €`;
+
+/** «1490 €», «450 € / mes» */
+export function formatPackagePrice(price: Package["price"]) {
+  return [price.once ? eur(price.once) : null, price.monthly ? `${eur(price.monthly)} / mes` : null]
+    .filter(Boolean)
+    .join(" + ");
+}
+
+/** Texto de ahorro frente a contratar por separado */
+export function packageSavings(pkg: Package) {
+  const sep = packageSeparate(pkg);
+  const once = sep.once - (pkg.price.once ?? 0);
+  const monthly = sep.monthly - (pkg.price.monthly ?? 0);
+  return {
+    separate: formatPackagePrice({ once: sep.once, monthly: sep.monthly }),
+    saving:
+      once > 0 && monthly > 0
+        ? `${eur(once)} al empezar y ${eur(monthly)} / mes`
+        : once > 0
+          ? eur(once)
+          : `${eur(monthly)} / mes`,
+  };
+}

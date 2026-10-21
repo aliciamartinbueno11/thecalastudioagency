@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useId, useRef, useState, type FormEvent } from "react";
+import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { weddingScopeOptions, weddingServiceOptions } from "@/data/weddings";
 import { site } from "@/data/site";
 import { cn } from "@/lib/cn";
 import { validateWedding, type WeddingErrors, type WeddingPayload } from "@/lib/wedding-contact";
 import { Arrow } from "@/components/ui/Arrow";
+import { WEDDING_PACKAGE_EVENT } from "./WeddingPackButton";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -33,6 +34,22 @@ export function WeddingForm() {
   const [touched, setTouched] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
   const id = (n: string) => `${uid}-${n}`;
+
+  // Al pulsar «Pedir este paquete», el paquete queda indicado en el mensaje
+  useEffect(() => {
+    const onPackage = (e: Event) => {
+      const name = (e as CustomEvent<string>).detail;
+      const line = `Nos interesa el paquete «${name}». `;
+      setData((d) => ({
+        ...d,
+        scope: "integral",
+        // Sustituye el paquete anterior si se cambia de opinión
+        message: line + d.message.replace(/^Nos interesa el paquete «[^»]+»\. /, ""),
+      }));
+    };
+    window.addEventListener(WEDDING_PACKAGE_EVENT, onPackage);
+    return () => window.removeEventListener(WEDDING_PACKAGE_EVENT, onPackage);
+  }, []);
   const today = new Date().toISOString().slice(0, 10);
 
   const update = <K extends keyof WeddingPayload>(key: K, value: WeddingPayload[K]) => {

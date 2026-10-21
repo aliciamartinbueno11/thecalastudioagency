@@ -157,6 +157,63 @@ export const weddingCatalog: WeddingCategory[] = [
   },
 ];
 
+/**
+ * PAQUETES DE BODA — varias categorías juntas con descuento.
+ * «Por separado» y «Ahorráis» se calculan con los precios del catálogo; aquí solo va el precio del paquete.
+ */
+export type WeddingPackage = {
+  id: string;
+  name: string;
+  tagline: string;
+  /** Categorías del catálogo que incluye (por id) */
+  categories: string[];
+  includes: string[];
+  price: number;
+  featured?: boolean;
+};
+
+export const weddingPackages: WeddingPackage[] = [
+  {
+    id: "esencial",
+    name: "Esencial",
+    tagline: "Lo imprescindible para anunciar la boda con una identidad propia.",
+    categories: ["identidad", "invitaciones", "audiovisual"],
+    includes: ["Monograma, paleta y tipografías", "Invitación y sobre", "Save the date animado"],
+    price: 450,
+  },
+  {
+    id: "papeleria",
+    name: "Papelería completa",
+    tagline: "De la invitación a la mesa, todo con el mismo trazo.",
+    categories: ["identidad", "invitaciones", "dia", "despues"],
+    includes: [
+      "Identidad de la boda",
+      "Invitación, sobre y tarjeta de confirmación",
+      "Seating plan, minutas y números de mesa",
+      "Tarjetas de agradecimiento",
+    ],
+    price: 540,
+    featured: true,
+  },
+  {
+    id: "integral",
+    name: "Integral",
+    tagline: "Todo el universo gráfico y digital de vuestra boda.",
+    categories: ["identidad", "invitaciones", "web", "dia", "despues"],
+    includes: [
+      "Todo lo de Papelería completa",
+      "Web de boda con RSVP y código QR",
+      "Cartel de bienvenida y señalética",
+      "Un solo interlocutor de principio a fin",
+    ],
+    price: 790,
+  },
+];
+
+/** Precio de las categorías del paquete contratadas por separado */
+export const weddingPackageSeparate = (pkg: WeddingPackage) =>
+  pkg.categories.reduce((sum, id) => sum + weddingCatalog.find((c) => c.id === id)!.from, 0);
+
 export const weddingProcess = [
   { number: "01", title: "Nos contáis vuestra idea.", text: "Queremos conoceros y entender cómo imagináis vuestra boda." },
   { number: "02", title: "Diseñamos vuestro universo.", text: "Creamos una dirección visual que encaje con vosotros y con el estilo de la celebración." },

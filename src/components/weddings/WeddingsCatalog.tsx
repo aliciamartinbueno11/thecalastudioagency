@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, type KeyboardEvent } from "react";
-import { weddingCatalog, weddingPricingNote } from "@/data/weddings";
+import { weddingCatalog } from "@/data/weddings";
 import { cn } from "@/lib/cn";
 import { WeddingButton } from "./WeddingButton";
 
@@ -123,10 +123,11 @@ export function WeddingsCatalog() {
         </div>
 
         <div className="mt-14 flex flex-col items-start gap-5 border-t border-line-warm pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="max-w-md text-umber/80">¿No sabéis por dónde empezar? Contadnos la idea y os proponemos qué piezas tienen sentido.</p>
+          <p className="max-w-md text-umber/80">
+            ¿Necesitáis varias piezas? Mirad los <a href="#paquetes-boda" className="underline decoration-sea underline-offset-4 hover:text-sea">paquetes</a>: salen bastante mejor de precio.
+          </p>
           <WeddingButton href="#contacto-boda">Pedir presupuesto</WeddingButton>
         </div>
-        <p className="mt-6 max-w-2xl text-[0.95rem] text-umber-soft">{weddingPricingNote}</p>
       </div>
     </section>
   );

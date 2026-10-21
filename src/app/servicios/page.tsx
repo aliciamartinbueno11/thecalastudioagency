@@ -8,6 +8,7 @@ import { revealDelay } from "@/lib/style";
 import { ButtonLink } from "@/components/ui/Button";
 import { CTA } from "@/components/ui/CTA";
 import { PageHero } from "@/components/sections/PageHero";
+import { Packages } from "@/components/sections/Packages";
 
 export const metadata = pageMetadata({
   title: "Servicios y precios de marketing digital en Nerja y Málaga",
@@ -42,12 +43,20 @@ export default function ServiciosPage() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="#paquetes"
+                  className="inline-flex items-baseline gap-2 rounded-full bg-agua px-4 py-2 text-sm transition-colors hover:bg-ink hover:text-cream"
+                >
+                  Paquetes con descuento
+                </Link>
+              </li>
             </ul>
           </nav>
         }
       />
 
-      <div className="container-cala pb-24 lg:pb-36">
+      <div className="container-cala pb-16 lg:pb-24">
         {services.map((s) => (
           <section
             key={s.slug}
@@ -107,6 +116,8 @@ export default function ServiciosPage() {
         ))}
         <p className="border-t border-line pt-6 text-[0.95rem] text-mute">{pricingNote}</p>
       </div>
+
+      <Packages />
 
       <section aria-labelledby="faq-title" className="bg-paper py-24 lg:py-32">
         <div className="container-cala grid gap-10 lg:grid-cols-12 lg:gap-8">

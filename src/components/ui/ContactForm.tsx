@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
-import { serviceOptions } from "@/data/services";
+import { packages, serviceOptions, services } from "@/data/services";
 import { site } from "@/data/site";
 import {
   budgetOptions,
@@ -53,12 +53,23 @@ export function ContactForm({ tone = "light" }: { tone?: "light" | "dark" }) {
 
   // Llegando desde «Pedir presupuesto» de un servicio (?servicio=Web), lo dejamos marcado
   useEffect(() => {
-    const preset = new URLSearchParams(window.location.search).get("servicio");
-    if (preset && (serviceOptions as readonly string[]).includes(preset)) {
-      // La URL solo existe en el navegador: se lee tras hidratar para no romper el HTML estático
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setData((d) => (d.services.includes(preset) ? d : { ...d, services: [...d.services, preset] }));
-    }
+    const params = new URLSearchParams(window.location.search);
+    const preset = params.get("servicio");
+    // Desde «Pedir este paquete» (?paquete=arranque): marcamos sus servicios y lo citamos en el mensaje
+    const pkg = packages.find((p) => p.slug === params.get("paquete"));
+    const presetServices = pkg
+      ? pkg.services.map((slug) => services.find((s) => s.slug === slug)!.option)
+      : preset && (serviceOptions as readonly string[]).includes(preset)
+        ? [preset]
+        : [];
+    if (presetServices.length === 0) return;
+    // La URL solo existe en el navegador: se lee tras hidratar para no romper el HTML estático
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setData((d) => ({
+      ...d,
+      services: [...new Set([...d.services, ...presetServices])],
+      message: pkg && !d.message ? `Me interesa el paquete «${pkg.name}». ` : d.message,
+    }));
   }, []);
 
   const update = <K extends keyof ContactPayload>(key: K, value: ContactPayload[K]) => {
