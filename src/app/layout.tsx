@@ -46,6 +46,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="es"
+      // Evita el scroll suave al cambiar de página (Next.js lo necesita indicado aquí)
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
       className={`${bricolage.variable} ${instrumentSans.variable} ${instrumentSerif.variable}`}
     >
