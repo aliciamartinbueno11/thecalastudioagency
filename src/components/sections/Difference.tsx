@@ -6,7 +6,7 @@ export function Difference() {
     <section aria-labelledby="diferencia-title" className="relative overflow-hidden bg-ink py-24 text-cream lg:py-40">
       <div className="container-cala">
         <p className="label flex items-center gap-3 text-mute-dark">
-          <span className="text-agua">(05)</span> Diferencia
+          <span className="text-agua">(06)</span> Diferencia
         </p>
 
         <h2 id="diferencia-title" className="mt-10 lg:mt-16">

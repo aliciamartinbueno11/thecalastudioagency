@@ -16,7 +16,7 @@ export function About() {
           <div className="lg:col-span-3">
             <span aria-hidden="true" data-reveal="line" className="block h-px w-full bg-line" />
             <p className="label mt-4 text-mute">
-              <span className="text-agua-ink">(06)</span> Sobre Cala
+              <span className="text-agua-ink">(07)</span> Sobre Cala
             </p>
           </div>
           <h2

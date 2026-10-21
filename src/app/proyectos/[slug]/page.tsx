@@ -4,6 +4,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProject, projects } from "@/data/projects";
 import { pageMetadata } from "@/lib/metadata";
+import { cn } from "@/lib/cn";
+import { breadcrumbSchema, JsonLd } from "@/lib/schema";
 import { vars } from "@/lib/style";
 import { Arrow } from "@/components/ui/Arrow";
 import { CTA } from "@/components/ui/CTA";
@@ -24,7 +26,6 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     title: `${project.title} — ${project.services.join(" + ")}`,
     description: project.excerpt,
     path: `/proyectos/${project.slug}`,
-    noindex: true,
   });
 }
 
@@ -45,6 +46,12 @@ export default async function ProyectoPage({ params }: { params: Promise<Params>
 
   return (
     <>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Proyectos", path: "/proyectos" },
+          { name: project.title, path: `/proyectos/${project.slug}` },
+        ])}
+      />
       <article>
         <header className="container-cala pb-12 pt-10 lg:pt-16">
           <nav aria-label="Migas de pan" className="label hero-rise flex items-center gap-2 border-b border-line pb-4 text-mute">
@@ -53,7 +60,7 @@ export default async function ProyectoPage({ params }: { params: Promise<Params>
             </Link>
             <span aria-hidden="true">/</span>
             <span aria-current="page" className="text-ink">
-              {project.number}
+              {project.title}
             </span>
           </nav>
           <div className="mt-10 grid gap-10 lg:mt-14 lg:grid-cols-12 lg:gap-8">
@@ -116,11 +123,13 @@ export default async function ProyectoPage({ params }: { params: Promise<Params>
             <div
               key={img.src}
               data-reveal
-              className={
-                i === 0
-                  ? "relative aspect-[4/5] overflow-hidden bg-paper md:col-span-5"
-                  : "relative aspect-[5/4] overflow-hidden bg-paper md:col-span-7 md:mt-32"
-              }
+              className={cn(
+                "relative overflow-hidden bg-paper",
+                img.shape === "portrait" ? "aspect-[4/5] md:col-span-5" : "aspect-[5/4] md:col-span-7",
+                // Composición en zigzag: las impares bajan y la tercera se desplaza a la derecha
+                i % 2 === 1 && "md:mt-32",
+                i === 2 && "md:col-start-6",
+              )}
             >
               <Image src={img.src} alt={img.alt} fill sizes="(min-width: 768px) 58vw, 100vw" className="object-cover" />
             </div>

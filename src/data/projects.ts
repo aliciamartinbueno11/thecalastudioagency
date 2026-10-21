@@ -1,9 +1,10 @@
 /**
- * Proyectos placeholder.
- * Para sustituir un proyecto: cambia los textos aquí y reemplaza las imágenes
- * en /public/images/proyectos/ manteniendo las rutas (o actualiza `cover` y `gallery`).
- * Cada proyecto genera automáticamente su página en /proyectos/[slug].
+ * Proyectos de Cala Studio (marketing, marca y web).
+ * Solo trabajos reales. Cada proyecto genera su página en /proyectos/[slug].
+ * Las bodas viven en src/data/weddings.ts y también aparecen en /proyectos.
  */
+export type ProjectImage = { src: string; alt: string; shape: "portrait" | "landscape" };
+
 export type Project = {
   slug: string;
   number: string;
@@ -14,112 +15,67 @@ export type Project = {
   services: string[];
   excerpt: string;
   cover: { src: string; alt: string };
+  /** Imagen 5:4 para las tarjetas del listado (si no hay, se usa la portada) */
+  card?: string;
   challenge: string;
   approach: string;
   work: string[];
   outcome: string;
+  /** Datos verificables del proyecto. Nada de cifras inventadas: si no hay datos, se deja vacío. */
   metrics: { value: string; label: string }[];
-  gallery: { src: string; alt: string }[];
+  gallery: ProjectImage[];
 };
 
 export const projects: Project[] = [
   {
-    slug: "proyecto-01",
+    slug: "cala-studio",
     number: "01",
-    title: "Proyecto 01",
-    client: "Nombre del cliente",
-    sector: "Restauración",
+    title: "Cala Studio",
+    client: "Cala Studio (marca propia)",
+    sector: "Marketing y diseño",
     year: "2026",
-    services: ["Estrategia", "Social Media"],
+    services: ["Branding", "Web", "Redes sociales"],
     excerpt:
-      "Ordenar unas redes que publicaban mucho y contaban poco, y darles una función clara: llenar mesas entre semana.",
-    cover: { src: "/images/proyectos/proyecto-01.webp", alt: "Imagen de portada del Proyecto 01" },
+      "Nuestro primer cliente fuimos nosotros: identidad, web y lanzamiento en Instagram con un mismo sistema visual.",
+    cover: {
+      src: "/images/proyectos/cala-studio/portada.webp",
+      alt: "Tres publicaciones de Instagram de Cala Studio sobre fondo de papel: «Marketing con cabeza», «Menos humo, más criterio» y la retícula de puntos sobre negro",
+    },
+    card: "/images/proyectos/cala-studio/tarjeta.webp",
     challenge:
-      "El negocio publicaba a diario, pero sin un objetivo concreto. Había seguidores, no había reservas.",
+      "Una agencia nueva en Nerja tenía que explicar en pocos segundos qué hace distinto, y parecer la misma en la web, en Instagram y en un correo.",
     approach:
-      "Empezamos por entender qué días y qué público necesitaba el local. A partir de ahí redefinimos la línea editorial y el calendario.",
-    work: [
-      "Auditoría de perfiles y competencia",
-      "Nueva línea editorial y calendario",
-      "Dirección de arte de foto y vídeo",
-      "Informe mensual de reservas desde redes",
-    ],
-    outcome:
-      "Menos publicaciones, mejor pensadas, y un seguimiento real de cuántas reservas llegan desde redes.",
-    metrics: [
-      { value: "00%", label: "Dato a sustituir" },
-      { value: "00", label: "Dato a sustituir" },
-      { value: "0×", label: "Dato a sustituir" },
-    ],
-    gallery: [
-      { src: "/images/proyectos/proyecto-01-a.webp", alt: "Detalle del Proyecto 01" },
-      { src: "/images/proyectos/proyecto-01-b.webp", alt: "Detalle del Proyecto 01" },
-    ],
-  },
-  {
-    slug: "proyecto-02",
-    number: "02",
-    title: "Proyecto 02",
-    client: "Nombre del cliente",
-    sector: "Estudio profesional",
-    year: "2026",
-    services: ["Branding", "Web"],
-    excerpt:
-      "Una identidad y una web que por fin explican bien lo que hace el estudio y a quién se dirige.",
-    cover: { src: "/images/proyectos/proyecto-02.webp", alt: "Imagen de portada del Proyecto 02" },
-    challenge:
-      "La marca había crecido a base de parches: tres logotipos, una web antigua y un mensaje distinto en cada canal.",
-    approach:
-      "Definimos posicionamiento y tono antes de tocar el diseño. Después construimos un sistema visual sencillo y una web pensada para generar contactos.",
+      "Antes de diseñar nada, escribimos el mensaje: marketing con cabeza, menos humo y más criterio. El símbolo sale del nombre, una cala vista desde arriba, y el lenguaje gráfico de una carta náutica: rumbo, coordenadas y un objetivo marcado.",
     work: [
       "Posicionamiento y mensajes clave",
-      "Identidad visual y guía de uso",
-      "Diseño y desarrollo web",
-      "Medición de contactos",
+      "Logotipo, paleta y tipografías",
+      "Sistema gráfico de carta náutica",
+      "Web con SEO local y formulario de presupuesto",
+      "Kit de lanzamiento para Instagram",
     ],
     outcome:
-      "Una marca coherente en todos los canales y una web que el equipo puede actualizar sin depender de nadie.",
+      "Una marca que se reconoce sin ver el nombre, y un sistema que permite crear piezas nuevas sin empezar de cero ni perder la coherencia.",
     metrics: [
-      { value: "00%", label: "Dato a sustituir" },
-      { value: "00", label: "Dato a sustituir" },
-      { value: "0 s", label: "Dato a sustituir" },
+      { value: "6", label: "Publicaciones de arranque" },
+      { value: "5", label: "Portadas de destacadas" },
+      { value: "1", label: "Sistema para web y redes" },
     ],
     gallery: [
-      { src: "/images/proyectos/proyecto-02-a.webp", alt: "Detalle del Proyecto 02" },
-      { src: "/images/proyectos/proyecto-02-b.webp", alt: "Detalle del Proyecto 02" },
-    ],
-  },
-  {
-    slug: "proyecto-03",
-    number: "03",
-    title: "Proyecto 03",
-    client: "Nombre del cliente",
-    sector: "E-commerce",
-    year: "2026",
-    services: ["Paid Media", "Automatización"],
-    excerpt:
-      "Campañas con un objetivo medible y un seguimiento automático de cada contacto, sin hojas de cálculo a mano.",
-    cover: { src: "/images/proyectos/proyecto-03.webp", alt: "Imagen de portada del Proyecto 03" },
-    challenge:
-      "Se invertía en Meta y Google sin saber qué campaña traía ventas. Los contactos se gestionaban a mano.",
-    approach:
-      "Primero medición, después inversión. Configuramos conversiones, reorganizamos campañas y automatizamos el seguimiento.",
-    work: [
-      "Configuración de medición y conversiones",
-      "Reestructuración de campañas en Meta y Google",
-      "Automatización de seguimiento de contactos",
-      "Panel de resultados semanal",
-    ],
-    outcome:
-      "Cada euro invertido tiene ahora un dato al lado, y el equipo dedica su tiempo a vender en lugar de copiar datos.",
-    metrics: [
-      { value: "00%", label: "Dato a sustituir" },
-      { value: "00 h", label: "Dato a sustituir" },
-      { value: "0,0", label: "Dato a sustituir" },
-    ],
-    gallery: [
-      { src: "/images/proyectos/proyecto-03-a.webp", alt: "Detalle del Proyecto 03" },
-      { src: "/images/proyectos/proyecto-03-b.webp", alt: "Detalle del Proyecto 03" },
+      {
+        src: "/images/proyectos/cala-studio/historia.webp",
+        alt: "Historia de Instagram de lanzamiento: «Ya estamos en marcha» con la carta náutica y el rumbo hacia el objetivo",
+        shape: "portrait",
+      },
+      {
+        src: "/images/proyectos/cala-studio/cuadricula.webp",
+        alt: "Las seis primeras publicaciones de Instagram en cuadrícula: filosofía, servicios, método, diferencia y contacto",
+        shape: "landscape",
+      },
+      {
+        src: "/images/proyectos/cala-studio/destacadas.webp",
+        alt: "Foto de perfil con el símbolo de Cala Studio y cinco portadas de historias destacadas con iconos de línea",
+        shape: "landscape",
+      },
     ],
   },
 ];

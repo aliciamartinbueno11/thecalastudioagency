@@ -6,6 +6,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Method } from "@/components/sections/Method";
 import { Positioning } from "@/components/sections/Positioning";
 import { ServicesIndex } from "@/components/sections/ServicesIndex";
+import { WorkShowcase } from "@/components/sections/WorkShowcase";
 import { WeddingsTeaser } from "@/components/weddings/WeddingsTeaser";
 
 export default function HomePage() {
@@ -15,6 +16,7 @@ export default function HomePage() {
       <Positioning />
       <ServicesIndex />
       <Method />
+      <WorkShowcase />
       <Area />
       <Difference />
       <WeddingsTeaser />

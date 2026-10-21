@@ -6,7 +6,7 @@ type ContactSectionProps = {
   index?: string | null;
 };
 
-export function ContactSection({ as: Tag = "h2", index = "07" }: ContactSectionProps) {
+export function ContactSection({ as: Tag = "h2", index = "08" }: ContactSectionProps) {
   // Como titular de página (h1) se muestra de inmediato: no espera a la animación de scroll
   const reveal = Tag === "h2" ? { "data-reveal": true } : {};
   return (

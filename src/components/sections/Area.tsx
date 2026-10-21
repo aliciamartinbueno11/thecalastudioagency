@@ -22,7 +22,7 @@ export function Area() {
           <div className="lg:col-span-3">
             <span aria-hidden="true" data-reveal="line" className="block h-px w-full bg-line" />
             <p className="label mt-4 text-mute">
-              <span className="text-agua-ink">(04)</span> Dónde estamos
+              <span className="text-agua-ink">(05)</span> Dónde estamos
             </p>
           </div>
           <div className="lg:col-span-9">
