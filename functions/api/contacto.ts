@@ -26,6 +26,8 @@ export async function onRequestPost({ request, env }: Context) {
     email: String(body.email ?? ""),
     phone: String(body.phone ?? ""),
     services: Array.isArray(body.services) ? body.services.map(String) : [],
+    budget: String(body.budget ?? ""),
+    timing: String(body.timing ?? ""),
     message: String(body.message ?? ""),
     privacy: body.privacy === true,
     website: String(body.website ?? ""),
@@ -40,7 +42,7 @@ export async function onRequestPost({ request, env }: Context) {
   const result = await sendFormEmail(env, {
     tag: "contacto",
     title: "Nuevo proyecto desde la web",
-    subject: `Nuevo proyecto: ${data.name}${data.company ? ` (${data.company})` : ""}`,
+    subject: `Nuevo proyecto: ${data.name}${data.company ? ` (${data.company})` : ""}${data.budget ? ` · ${data.budget}` : ""}`,
     replyTo: data.email,
     rows: [
       ["Nombre", data.name],
@@ -48,6 +50,8 @@ export async function onRequestPost({ request, env }: Context) {
       ["Email", data.email],
       ["Teléfono", data.phone || "—"],
       ["Servicios", data.services.join(", ")],
+      ["Presupuesto", data.budget || "—"],
+      ["Plazo", data.timing || "—"],
     ],
     message: data.message,
   });

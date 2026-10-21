@@ -2,9 +2,9 @@ import { pageMetadata } from "@/lib/metadata";
 import { ContactSection } from "@/components/sections/ContactSection";
 
 export const metadata = pageMetadata({
-  title: "Contacto",
+  title: "Contacto y presupuesto",
   description:
-    "Cuéntanos qué estás montando, qué quieres mejorar o qué no termina de funcionar. Te respondemos en menos de 48 h laborables.",
+    "Pide presupuesto a Cala Studio, agencia de marketing digital en Nerja. Cuéntanos qué necesitas y te respondemos en menos de 48 h laborables.",
   path: "/contacto",
 });
 

@@ -1,7 +1,6 @@
 export const dynamic = "force-static";
 
 import type { MetadataRoute } from "next";
-import { projects } from "@/data/projects";
 import { site } from "@/data/site";
 import { weddingProjects } from "@/data/weddings";
 
@@ -10,12 +9,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const routes: { path: string; priority: number }[] = [
     { path: "", priority: 1 },
     { path: "/servicios", priority: 0.9 },
-    { path: "/proyectos", priority: 0.8 },
     { path: "/bodas", priority: 0.9 },
     ...weddingProjects.map((p) => ({ path: `/bodas/${p.slug}`, priority: 0.7 })),
     { path: "/nosotros", priority: 0.7 },
     { path: "/contacto", priority: 0.9 },
-    ...projects.map((p) => ({ path: `/proyectos/${p.slug}`, priority: 0.6 })),
     { path: "/aviso-legal", priority: 0.2 },
     { path: "/privacidad", priority: 0.2 },
     { path: "/cookies", priority: 0.2 },

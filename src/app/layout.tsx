@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import Script from "next/script";
 import { site } from "@/data/site";
+import { businessSchema, JsonLd } from "@/lib/schema";
 import { bricolage, instrumentSans, instrumentSerif } from "@/lib/fonts";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
@@ -40,16 +41,6 @@ export const viewport: Viewport = {
   colorScheme: "light",
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: site.name,
-  description: site.description,
-  url: site.url,
-  email: site.email,
-  areaServed: "ES",
-  sameAs: [site.social.instagram, site.social.linkedin],
-};
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -63,10 +54,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <script
           dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }}
         />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <JsonLd data={businessSchema} />
       </head>
       <body>
         <Header />

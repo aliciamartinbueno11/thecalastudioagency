@@ -1,20 +1,25 @@
 import Link from "next/link";
-import { services } from "@/data/services";
+import { formatPrice, pricingNote, services } from "@/data/services";
+import { servicesFaq } from "@/data/faq";
+import { cta } from "@/data/site";
 import { pageMetadata } from "@/lib/metadata";
+import { breadcrumbSchema, faqSchema, JsonLd } from "@/lib/schema";
 import { revealDelay } from "@/lib/style";
+import { ButtonLink } from "@/components/ui/Button";
 import { CTA } from "@/components/ui/CTA";
 import { PageHero } from "@/components/sections/PageHero";
 
 export const metadata = pageMetadata({
-  title: "Servicios",
+  title: "Servicios y precios de marketing digital en Nerja y Málaga",
   description:
-    "Estrategia, redes sociales, publicidad digital, web, branding y automatización. Qué incluye cada servicio y cuándo tiene sentido.",
+    "Estrategia, redes sociales, publicidad en Meta y Google, diseño web, branding y automatización para negocios de Nerja, la Axarquía y Málaga. Qué incluye cada servicio y precios orientativos.",
   path: "/servicios",
 });
 
 export default function ServiciosPage() {
   return (
     <>
+      <JsonLd data={[faqSchema(servicesFaq), breadcrumbSchema([{ name: "Servicios", path: "/servicios" }])]} />
       <PageHero
         label="Servicios"
         title={
@@ -86,10 +91,46 @@ export default function ServiciosPage() {
                 <h3 className="label text-mute">Tiene sentido si…</h3>
                 <p className="mt-2 text-lg leading-relaxed">{s.fit}</p>
               </div>
+              <div className="mt-10 flex flex-wrap items-end justify-between gap-x-8 gap-y-5 rounded-2xl bg-paper p-6">
+                <p>
+                  <span className="display-wide block text-[1.75rem] leading-none tabular">
+                    {formatPrice(s.price)}
+                  </span>
+                  {s.price.note ? <span className="mt-2 block text-[0.95rem] text-mute">{s.price.note}</span> : null}
+                </p>
+                <ButtonLink href={`${cta.quote.href}?servicio=${encodeURIComponent(s.option)}`} variant="link">
+                  Pedir presupuesto
+                </ButtonLink>
+              </div>
             </div>
           </section>
         ))}
+        <p className="border-t border-line pt-6 text-[0.95rem] text-mute">{pricingNote}</p>
       </div>
+
+      <section aria-labelledby="faq-title" className="bg-paper py-24 lg:py-32">
+        <div className="container-cala grid gap-10 lg:grid-cols-12 lg:gap-8">
+          <h2 id="faq-title" className="display text-[clamp(2.5rem,5vw,4.25rem)] lg:col-span-4">
+            Preguntas <span className="accent text-agua-deep">frecuentes.</span>
+          </h2>
+          <div className="border-t border-ink/20 lg:col-span-7 lg:col-start-6">
+            {servicesFaq.map((item) => (
+              <details key={item.q} className="group/faq border-b border-ink/20">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 [&::-webkit-details-marker]:hidden">
+                  <h3 className="font-sans text-lg font-medium">{item.q}</h3>
+                  <span
+                    aria-hidden="true"
+                    className="grid size-8 shrink-0 place-items-center rounded-full border border-ink/20 transition-transform duration-300 group-open/faq:rotate-45"
+                  >
+                    +
+                  </span>
+                </summary>
+                <p className="max-w-xl pb-6 text-lg leading-relaxed text-ink/80">{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <CTA />
     </>

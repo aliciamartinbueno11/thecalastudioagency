@@ -12,9 +12,12 @@ export function Footer() {
             <p className="display text-[clamp(2.25rem,4.5vw,3.75rem)]">
               Marketing con <span className="accent text-agua">cabeza.</span>
             </p>
+            <p className="mt-6 max-w-sm text-cream/70">
+              Agencia de marketing digital en Nerja. Trabajamos en la Axarquía, Málaga y la Costa del Sol.
+            </p>
             <a
               href={`mailto:${site.email}`}
-              className="mt-6 inline-block text-lg text-cream/80 underline decoration-cream/30 underline-offset-[6px] transition-colors hover:text-agua hover:decoration-agua"
+              className="mt-4 inline-block text-lg text-cream/80 underline decoration-cream/30 underline-offset-[6px] transition-colors hover:text-agua hover:decoration-agua"
             >
               {site.email}
             </a>

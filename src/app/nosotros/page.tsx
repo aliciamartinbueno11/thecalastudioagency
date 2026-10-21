@@ -6,9 +6,9 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { PageHero } from "@/components/sections/PageHero";
 
 export const metadata = pageMetadata({
-  title: "Nosotros",
+  title: "Nosotros · Estudio de marketing en Nerja",
   description:
-    "Cala Studio nace de una forma sencilla de entender el marketing: escuchar primero, pensar después y ejecutar con criterio.",
+    "Cala Studio es un estudio de marketing digital en Nerja (Málaga). Trabajamos de cerca con negocios de la Axarquía y la Costa del Sol: escuchar primero, pensar después y ejecutar con criterio.",
   path: "/nosotros",
 });
 

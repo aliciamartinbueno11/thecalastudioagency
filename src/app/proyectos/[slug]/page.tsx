@@ -24,6 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     title: `${project.title} — ${project.services.join(" + ")}`,
     description: project.excerpt,
     path: `/proyectos/${project.slug}`,
+    noindex: true,
   });
 }
 

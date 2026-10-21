@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { site } from "@/data/site";
+import { businessId } from "@/lib/schema";
 import { weddingBrand, weddingCatalog, weddingFaq } from "@/data/weddings";
 import { weddingSerif } from "@/lib/fonts-weddings";
 import { WeddingsHero } from "@/components/weddings/WeddingsHero";
@@ -13,7 +14,7 @@ import { WeddingsFaq } from "@/components/weddings/WeddingsFaq";
 import { WeddingsContact } from "@/components/weddings/WeddingsContact";
 
 export const metadata: Metadata = {
-  title: { absolute: "Cala Weddings · Diseño de bodas, invitaciones y webs en Málaga" },
+  title: { absolute: "Cala Weddings · Invitaciones, papelería y webs de boda en Nerja y Málaga" },
   description: weddingBrand.description,
   keywords: [
     "diseño de invitaciones de boda personalizadas",
@@ -24,6 +25,8 @@ export const metadata: Metadata = {
     "identidad visual para bodas",
     "diseño integral de bodas",
     "diseño de bodas en Málaga",
+    "invitaciones de boda Nerja",
+    "papelería de boda Axarquía",
   ],
   alternates: { canonical: weddingBrand.path },
   openGraph: {
@@ -42,8 +45,10 @@ const jsonLd = [
     serviceType: "Diseño gráfico y digital para bodas",
     description: weddingBrand.description,
     url: `${site.url}${weddingBrand.path}`,
-    provider: { "@type": "ProfessionalService", name: site.name, url: site.url, email: site.email },
+    provider: { "@id": businessId },
     areaServed: [
+      { "@type": "City", name: "Nerja" },
+      { "@type": "AdministrativeArea", name: "Axarquía" },
       { "@type": "AdministrativeArea", name: "Málaga" },
       { "@type": "AdministrativeArea", name: "Costa del Sol" },
       { "@type": "Country", name: "España" },

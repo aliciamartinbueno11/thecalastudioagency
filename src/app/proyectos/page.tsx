@@ -9,6 +9,8 @@ export const metadata = pageMetadata({
   title: "Proyectos",
   description: "Casos de Cala Studio: qué había, qué hicimos y qué cambió.",
   path: "/proyectos",
+  // Proyectos de ejemplo: fuera de buscadores hasta que haya casos reales
+  noindex: true,
 });
 
 export default function ProyectosPage() {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, type KeyboardEvent } from "react";
-import { weddingCatalog } from "@/data/weddings";
+import { weddingCatalog, weddingPricingNote } from "@/data/weddings";
 import { cn } from "@/lib/cn";
 import { WeddingButton } from "./WeddingButton";
 
@@ -113,6 +113,10 @@ export function WeddingsCatalog() {
                   ))}
                 </ul>
                 {cat.note ? <p className="mt-6 border-l-2 border-sea pl-4 text-[0.95rem] leading-relaxed text-umber-soft">{cat.note}</p> : null}
+                <p className="mt-8 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-t border-line-warm pt-6">
+                  <span className="serif-display text-[1.9rem] text-umber">Desde {cat.from} €</span>
+                  <span className="text-[0.95rem] text-umber-soft">{cat.fromLabel}</span>
+                </p>
               </div>
             ))}
           </div>
@@ -120,8 +124,9 @@ export function WeddingsCatalog() {
 
         <div className="mt-14 flex flex-col items-start gap-5 border-t border-line-warm pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="max-w-md text-umber/80">¿No sabéis por dónde empezar? Contadnos la idea y os proponemos qué piezas tienen sentido.</p>
-          <WeddingButton href="#contacto-boda">Contadnos vuestra idea</WeddingButton>
+          <WeddingButton href="#contacto-boda">Pedir presupuesto</WeddingButton>
         </div>
+        <p className="mt-6 max-w-2xl text-[0.95rem] text-umber-soft">{weddingPricingNote}</p>
       </div>
     </section>
   );

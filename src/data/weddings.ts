@@ -9,7 +9,7 @@ export const weddingBrand = {
   path: "/bodas",
   title: "Diseño de bodas: invitaciones, papelería y webs personalizadas",
   description:
-    "Diseño integral para bodas en Málaga, la Costa del Sol y donde estéis: identidad visual, invitaciones personalizadas, papelería, webs de boda con RSVP y diseño para el gran día.",
+    "Diseño integral para bodas desde Nerja, para la Axarquía, Málaga, la Costa del Sol y donde estéis: identidad visual, invitaciones personalizadas, papelería, webs de boda con RSVP y diseño para el gran día.",
 };
 
 export type WeddingCategory = {
@@ -20,7 +20,14 @@ export type WeddingCategory = {
   intro: string;
   items: string[];
   note?: string;
+  /** Precio orientativo de partida, sin IVA (diseño; la impresión va aparte) */
+  from: number;
+  fromLabel: string;
 };
+
+/** PRECIOS ORIENTATIVOS — propuesta pendiente de validar por Cala Studio. */
+export const weddingPricingNote =
+  "Precios orientativos de diseño, sin IVA. La impresión y la producción van aparte. Os enviamos un presupuesto cerrado según las piezas que elijáis.";
 
 export const weddingCatalog: WeddingCategory[] = [
   {
@@ -29,6 +36,8 @@ export const weddingCatalog: WeddingCategory[] = [
     title: "Identidad visual de vuestra boda",
     short: "Identidad",
     intro: "El punto de partida: una idea propia que después se aplica a todo lo demás.",
+    from: 300,
+    fromLabel: "Monograma, paleta y tipografías",
     items: [
       "Concepto creativo y dirección artística",
       "Monogramas y logotipos personalizados",
@@ -45,6 +54,8 @@ export const weddingCatalog: WeddingCategory[] = [
     title: "Invitaciones y papelería",
     short: "Invitaciones",
     intro: "Lo primero que ven vuestros invitados. Y lo que se queda en la nevera hasta el día.",
+    from: 180,
+    fromLabel: "Diseño de la invitación",
     items: [
       "Save the Date",
       "Invitaciones digitales",
@@ -67,6 +78,8 @@ export const weddingCatalog: WeddingCategory[] = [
     title: "Web de boda y experiencia digital",
     short: "Web de boda",
     intro: "Toda la información en un solo enlace, con vuestro diseño y confirmación de asistencia.",
+    from: 350,
+    fromLabel: "Web de boda con RSVP",
     items: [
       "Diseño y desarrollo de webs personalizadas",
       "Historia de la pareja",
@@ -90,6 +103,8 @@ export const weddingCatalog: WeddingCategory[] = [
     title: "Diseño para el día de la boda",
     short: "El gran día",
     intro: "Que todo el espacio hable el mismo idioma, de la entrada a la última copa.",
+    from: 150,
+    fromLabel: "Seating plan o cartel de bienvenida",
     items: [
       "Seating plan",
       "Carteles de bienvenida",
@@ -111,6 +126,8 @@ export const weddingCatalog: WeddingCategory[] = [
     title: "Contenido digital y audiovisual",
     short: "Digital y vídeo",
     intro: "Para contarlo antes, proyectarlo durante y compartirlo después.",
+    from: 120,
+    fromLabel: "Save the date animado",
     items: [
       "Invitaciones animadas",
       "Vídeos Save the Date",
@@ -128,6 +145,8 @@ export const weddingCatalog: WeddingCategory[] = [
     title: "Después de la boda",
     short: "Después",
     intro: "La boda termina. Lo que se diseña para recordarla, no.",
+    from: 90,
+    fromLabel: "Tarjeta de agradecimiento",
     items: [
       "Tarjetas de agradecimiento",
       "Álbumes fotográficos diseñados",
@@ -156,7 +175,7 @@ export const weddingFaq = [
   },
   {
     q: "¿Trabajáis solo en Málaga?",
-    a: "Estamos en la Costa del Sol, pero la mayor parte del trabajo es digital, así que podemos diseñar para parejas de cualquier lugar.",
+    a: "Estamos en Nerja y trabajamos en la Axarquía, Málaga y toda la Costa del Sol. Además, la mayor parte del trabajo es digital, así que podemos diseñar para parejas de cualquier lugar.",
   },
   {
     q: "¿Con cuánta antelación conviene escribiros?",

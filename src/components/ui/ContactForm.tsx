@@ -1,10 +1,16 @@
 "use client";
 
-import { useId, useRef, useState, type FormEvent } from "react";
+import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import Link from "next/link";
 import { serviceOptions } from "@/data/services";
 import { site } from "@/data/site";
-import { validateContact, type ContactErrors, type ContactPayload } from "@/lib/contact";
+import {
+  budgetOptions,
+  timingOptions,
+  validateContact,
+  type ContactErrors,
+  type ContactPayload,
+} from "@/lib/contact";
 import { cn } from "@/lib/cn";
 import { Button } from "./Button";
 
@@ -16,12 +22,24 @@ const empty: ContactPayload = {
   email: "",
   phone: "",
   services: [],
+  budget: "",
+  timing: "",
   message: "",
   privacy: false,
   website: "",
 };
 
-const fieldOrder: (keyof ContactPayload)[] = ["name", "company", "email", "phone", "services", "message", "privacy"];
+const fieldOrder: (keyof ContactPayload)[] = [
+  "name",
+  "company",
+  "email",
+  "phone",
+  "services",
+  "budget",
+  "timing",
+  "message",
+  "privacy",
+];
 
 export function ContactForm({ tone = "light" }: { tone?: "light" | "dark" }) {
   const uid = useId();
@@ -32,6 +50,16 @@ export function ContactForm({ tone = "light" }: { tone?: "light" | "dark" }) {
   const [status, setStatus] = useState<Status>("idle");
 
   const id = (name: string) => `${uid}-${name}`;
+
+  // Llegando desde «Pedir presupuesto» de un servicio (?servicio=Web), lo dejamos marcado
+  useEffect(() => {
+    const preset = new URLSearchParams(window.location.search).get("servicio");
+    if (preset && (serviceOptions as readonly string[]).includes(preset)) {
+      // La URL solo existe en el navegador: se lee tras hidratar para no romper el HTML estático
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setData((d) => (d.services.includes(preset) ? d : { ...d, services: [...d.services, preset] }));
+    }
+  }, []);
 
   const update = <K extends keyof ContactPayload>(key: K, value: ContactPayload[K]) => {
     const next = { ...data, [key]: value };
@@ -130,6 +158,45 @@ export function ContactForm({ tone = "light" }: { tone?: "light" | "dark" }) {
 
   const labelClass = "label block text-mute";
 
+  const pillClass = (checked: boolean) =>
+    cn(
+      "relative inline-flex cursor-pointer select-none items-center gap-2 rounded-full border px-4 py-2 text-[0.95rem] transition-colors duration-300 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-agua-deep",
+      checked ? "border-agua bg-agua text-ink" : "border-ink/20 text-ink hover:border-ink/60",
+    );
+
+  /** Grupo de opciones de respuesta única (presupuesto, plazo). Se puede desmarcar. */
+  const choiceGroup = (key: "budget" | "timing", legend: string, options: readonly string[]) => (
+    <fieldset
+      aria-invalid={!!errors[key]}
+      aria-describedby={errors[key] ? id(`${key}-error`) : undefined}
+    >
+      <legend className={labelClass}>
+        {legend} <span className="normal-case tracking-normal">(opcional)</span>
+      </legend>
+      <div className="mt-4 flex flex-wrap gap-2">
+        {options.map((option, i) => {
+          const checked = data[key] === option;
+          return (
+            <label key={option} className={pillClass(checked)}>
+              <input
+                type="radio"
+                name={key}
+                value={option}
+                checked={checked}
+                data-field={i === 0 ? key : undefined}
+                onChange={() => update(key, option)}
+                onClick={() => checked && update(key, "")}
+                className="sr-only"
+              />
+              {option}
+            </label>
+          );
+        })}
+      </div>
+      {errorText(key)}
+    </fieldset>
+  );
+
   return (
     <form ref={formRef} noValidate onSubmit={onSubmit} aria-describedby={id("note")} className="relative">
       <div className="grid gap-x-8 gap-y-9 sm:grid-cols-2">
@@ -223,15 +290,7 @@ export function ContactForm({ tone = "light" }: { tone?: "light" | "dark" }) {
             {serviceOptions.map((option, i) => {
               const checked = data.services.includes(option);
               return (
-                <label
-                  key={option}
-                  className={cn(
-                    "relative inline-flex cursor-pointer select-none items-center gap-2 rounded-full border px-4 py-2 text-[0.95rem] transition-colors duration-300 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-agua-deep",
-                    checked
-                      ? "border-agua bg-agua text-ink"
-                      : "border-ink/20 text-ink hover:border-ink/60",
-                  )}
-                >
+                <label key={option} className={pillClass(checked)}>
                   <input
                     type="checkbox"
                     name="services"
@@ -255,6 +314,9 @@ export function ContactForm({ tone = "light" }: { tone?: "light" | "dark" }) {
           </div>
           {errorText("services")}
         </fieldset>
+
+        <div className="sm:col-span-2">{choiceGroup("budget", "Presupuesto aproximado", budgetOptions)}</div>
+        <div className="sm:col-span-2">{choiceGroup("timing", "¿Para cuándo?", timingOptions)}</div>
 
         <div className="sm:col-span-2">
           <label htmlFor={id("message")} className={labelClass}>
@@ -315,7 +377,7 @@ export function ContactForm({ tone = "light" }: { tone?: "light" | "dark" }) {
 
       <div className="mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:justify-between">
         <Button type="submit" disabled={status === "sending"} tone={tone}>
-          {status === "sending" ? "Enviando…" : "Cuéntanos tu proyecto"}
+          {status === "sending" ? "Enviando…" : "Pedir presupuesto"}
         </Button>
         <p id={id("note")} className="text-sm text-mute">
           * Campos obligatorios. Respondemos en menos de 48 h laborables.

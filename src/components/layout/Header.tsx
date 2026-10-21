@@ -74,19 +74,31 @@ export function Header() {
             </ul>
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 xs:gap-3">
             <div className="hidden md:block">
-              <ButtonLink href={cta.primary.href}>{cta.primary.label}</ButtonLink>
+              <ButtonLink href={cta.quote.href}>{cta.quote.label}</ButtonLink>
             </div>
+            {/* En móvil, acceso directo y compacto al presupuesto */}
+            <Link
+              href={cta.quote.href}
+              className={cn(
+                "flex h-11 items-center rounded-full bg-agua px-4 text-sm font-medium text-ink transition-opacity duration-300 md:hidden",
+                open && "pointer-events-none opacity-0",
+              )}
+              tabIndex={open ? -1 : undefined}
+            >
+              {cta.quote.short}
+            </Link>
             <button
               ref={toggleRef}
               type="button"
               aria-expanded={open}
               aria-controls="menu-movil"
               onClick={() => setOpen((v) => !v)}
-              className="relative z-10 flex h-11 cursor-pointer items-center gap-3 rounded-full border border-ink/20 pl-4 pr-3 text-sm font-medium xl:hidden"
+              className="relative z-10 flex h-11 min-w-11 cursor-pointer items-center justify-center gap-3 rounded-full border border-ink/20 px-3 text-sm font-medium xs:pl-4 xl:hidden"
             >
-              <span>{open ? "Cerrar" : "Menú"}</span>
+              {/* En pantallas estrechas solo el icono: el texto sigue disponible para lectores de pantalla */}
+              <span className="sr-only xs:not-sr-only">{open ? "Cerrar" : "Menú"}</span>
               <span aria-hidden="true" className="relative block h-3 w-5">
                 <span
                   className={cn(

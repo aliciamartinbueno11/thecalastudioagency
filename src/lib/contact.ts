@@ -1,12 +1,25 @@
 // Import relativo: este archivo también lo usa la Pages Function (sin alias @/)
 import { serviceOptions } from "../data/services";
 
+/** Opciones de presupuesto y plazo (ambas opcionales) */
+export const budgetOptions = [
+  "Menos de 500 €",
+  "500 – 1500 €",
+  "1500 – 3000 €",
+  "Más de 3000 €",
+  "Aún no lo sé",
+] as const;
+
+export const timingOptions = ["Lo antes posible", "En 1 a 3 meses", "Más adelante", "Solo estoy mirando"] as const;
+
 export type ContactPayload = {
   name: string;
   company: string;
   email: string;
   phone: string;
   services: string[];
+  budget: string;
+  timing: string;
   message: string;
   privacy: boolean;
   /** Campo trampa anti-spam: debe llegar vacío */
@@ -39,6 +52,11 @@ export function validateContact(data: ContactPayload): ContactErrors {
   if (data.services.length === 0) errors.services = "Marca al menos una opción.";
   else if (data.services.some((s) => !(serviceOptions as readonly string[]).includes(s)))
     errors.services = "Opción no válida.";
+
+  if (data.budget && !(budgetOptions as readonly string[]).includes(data.budget))
+    errors.budget = "Opción no válida.";
+  if (data.timing && !(timingOptions as readonly string[]).includes(data.timing))
+    errors.timing = "Opción no válida.";
 
   if (message.length < 10) errors.message = "Cuéntanos un poco más (mínimo 10 caracteres).";
   else if (message.length > 3000) errors.message = "El mensaje es demasiado largo (máximo 3000 caracteres).";

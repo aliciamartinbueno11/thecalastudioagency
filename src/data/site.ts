@@ -1,9 +1,9 @@
 export const site = {
   name: "Cala Studio",
   tagline: "Marketing con cabeza.",
-  title: "Cala Studio | Agencia de Marketing Digital",
+  title: "Cala Studio | Agencia de marketing digital en Nerja, Axarquía y Málaga",
   description:
-    "Estrategia, redes sociales, publicidad, web, creatividad y automatización para marcas que quieren hacer marketing con criterio.",
+    "Agencia de marketing digital en Nerja. Estrategia, redes sociales, publicidad, web y branding para negocios de la Axarquía, Málaga y la Costa del Sol.",
   // Cambia el dominio en la variable de entorno NEXT_PUBLIC_SITE_URL al publicar.
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://thecalastudio.com",
   locale: "es_ES",
@@ -12,6 +12,11 @@ export const site = {
   // Coordenadas del Balcón de Europa (Nerja): 36°44′41″N, 3°52′34″O
   coordinates: { lat: "36°44′N", lng: "3°52′O" },
   location: "Balcón de Europa, Nerja",
+  // Coordenadas decimales para los datos estructurados (Balcón de Europa)
+  geo: { latitude: 36.7447, longitude: -3.8762 },
+  address: { locality: "Nerja", region: "Málaga", country: "ES" },
+  // Zonas de trabajo, de lo más cercano a lo más lejano
+  areas: ["Nerja", "Axarquía", "Málaga", "Costa del Sol"],
   social: {
     instagram: "https://www.instagram.com/calastudio",
     linkedin: "https://www.linkedin.com/company/calastudio",
@@ -36,4 +41,6 @@ export const legalNav = [
 export const cta = {
   primary: { label: "Cuéntanos tu proyecto", href: "/contacto" },
   secondary: { label: "Ver servicios", href: "/servicios" },
+  // Versión corta para la cabecera (cabe en móvil)
+  quote: { label: "Pedir presupuesto", short: "Presupuesto", href: "/contacto" },
 } as const;

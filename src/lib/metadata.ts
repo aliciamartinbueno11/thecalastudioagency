@@ -6,12 +6,16 @@ export function pageMetadata({
   title,
   description = site.description,
   path,
+  noindex = false,
 }: {
   title?: string;
   description?: string;
   path: string;
+  /** Páginas que no deben aparecer en buscadores (p. ej., contenido provisional) */
+  noindex?: boolean;
 }): Metadata {
   return {
+    ...(noindex ? { robots: { index: false, follow: true } } : {}),
     title,
     description,
     alternates: { canonical: path },
