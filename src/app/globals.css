@@ -164,19 +164,62 @@
    Animaciones (todas respetan prefers-reduced-motion)
    ------------------------------------------------------------------ */
 
-/* Aparición al hacer scroll. Solo se oculta si hay JS. */
+/*
+ * Aparición al hacer scroll. Solo se oculta si hay JS.
+ * Tres gestos propios y nada más:
+ *   - Horizonte: los titulares emergen de abajo arriba, como desde la línea del mar.
+ *   - Marea: las imágenes se descubren de abajo arriba, como cuando sube el agua.
+ *   - Rumbo: las líneas se dibujan (ver [data-reveal="line"]).
+ * El resto del contenido solo aparece con un fundido breve, casi sin desplazamiento.
+ */
 .js [data-reveal] {
   opacity: 0;
-  transform: translate3d(0, 1.25rem, 0);
+  transform: translate3d(0, 0.5rem, 0);
   transition:
-    opacity 0.9s var(--ease-out-soft),
-    transform 0.9s var(--ease-out-soft);
+    opacity 0.8s var(--ease-out-soft),
+    transform 0.8s var(--ease-out-soft);
   transition-delay: calc(var(--reveal-delay, 0) * 1ms);
 }
 
 .js [data-reveal].is-visible {
   opacity: 1;
   transform: none;
+}
+
+/* Horizonte: titulares */
+.js :is(h1, h2, h3)[data-reveal],
+.js :is(h1, h2) > [data-reveal] {
+  opacity: 1;
+  transform: translate3d(0, 0.3em, 0);
+  clip-path: inset(100% -0.1em -0.3em -0.1em);
+  transition:
+    clip-path 0.9s var(--ease-out-soft),
+    transform 0.9s var(--ease-out-soft);
+  transition-delay: calc(var(--reveal-delay, 0) * 1ms);
+}
+.js :is(h1, h2, h3)[data-reveal].is-visible,
+.js :is(h1, h2) > [data-reveal].is-visible {
+  transform: none;
+  clip-path: inset(-0.25em -0.1em -0.3em -0.1em);
+}
+
+/* Marea: imágenes. Usa `translate` (no `transform`) para no pisar el zoom al pasar el ratón. */
+.js [data-reveal="image"] {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 1.3s var(--ease-out-soft);
+  transition-delay: calc(var(--reveal-delay, 0) * 1ms);
+}
+.js [data-reveal="image"] img {
+  translate: 0 6%;
+  transition: translate 1.6s var(--ease-out-soft);
+}
+.js [data-reveal="image"].is-visible {
+  clip-path: inset(0);
+}
+.js [data-reveal="image"].is-visible img {
+  translate: 0 0;
 }
 
 /* Línea que se dibuja de izquierda a derecha */
@@ -340,6 +383,10 @@
   .js [data-reveal] {
     opacity: 1;
     transform: none;
+    clip-path: none;
+  }
+  .js [data-reveal] img {
+    translate: none;
   }
 }
 

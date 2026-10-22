@@ -54,7 +54,8 @@ export function Area() {
                 <li
                   key={stop.name}
                   data-reveal
-                  style={{ ...revealDelay(200 + i * 90), ...vars({ "--x": `${100 - (stop.km / MAX) * 100}%` }) }}
+                  // Cada parada aparece cuando la línea (que se dibuja hacia el oeste en 1,2 s) llega a ella
+                  style={{ ...revealDelay(150 + Math.round((stop.km / MAX) * 1000)), ...vars({ "--x": `${100 - (stop.km / MAX) * 100}%` }) }}
                   className={cn(
                     "relative flex items-baseline justify-between gap-4 border-b border-line py-3",
                     "lg:absolute lg:top-1/2 lg:left-[var(--x)] lg:block lg:border-0 lg:py-0",

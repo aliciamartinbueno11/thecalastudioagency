@@ -27,7 +27,7 @@ export function WeddingsTeaser() {
           </Link>
         </div>
         <div className="md:col-span-6 lg:col-span-5 lg:col-start-8">
-          <div data-reveal className="relative mx-auto aspect-[4/5] max-w-md overflow-hidden rounded-t-[999px] bg-stone">
+          <div data-reveal="image" className="relative mx-auto aspect-[4/5] max-w-md overflow-hidden rounded-t-[999px] bg-stone">
             <Image
               src="/images/bodas/linea-fina/sobre-lazo.webp"
               alt="Sobre verde atado con cinta de gasa, flores secas y una etiqueta de papel vegetal: papelería de la boda «Línea fina»"

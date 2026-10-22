@@ -122,7 +122,7 @@ export default async function ProyectoPage({ params }: { params: Promise<Params>
           {project.gallery.map((img, i) => (
             <div
               key={img.src}
-              data-reveal
+              data-reveal="image"
               className={cn(
                 "relative overflow-hidden bg-paper",
                 img.shape === "portrait" ? "aspect-[4/5] md:col-span-5" : "aspect-[5/4] md:col-span-7",

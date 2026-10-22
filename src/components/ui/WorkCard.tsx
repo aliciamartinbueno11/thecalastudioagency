@@ -17,6 +17,7 @@ export function WorkCard({ item, aspect = "landscape", sizes = "(min-width: 768p
     <article className={cn("group/card", className)}>
       <Link href={item.href} className="block">
         <div
+          data-reveal="image"
           className={cn(
             "relative overflow-hidden",
             aspect === "portrait" ? "aspect-[4/5]" : "aspect-[5/4]",
