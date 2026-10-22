@@ -9,11 +9,10 @@ export const site = {
   locale: "es_ES",
   email: "hola@thecalastudio.com",
   phone: "",
-  // Coordenadas del Balcón de Europa (Nerja): 36°44′41″N, 3°52′34″O
+  // Coordenadas de Nerja redondeadas al minuto (~1,5 km): identifican el pueblo, no una dirección
   coordinates: { lat: "36°44′N", lng: "3°52′O" },
-  location: "Balcón de Europa, Nerja",
-  // Coordenadas decimales para los datos estructurados (Balcón de Europa)
-  geo: { latitude: 36.7447, longitude: -3.8762 },
+  // Solo el pueblo: Cala Studio no tiene local abierto al público
+  location: "Nerja, Málaga",
   address: { locality: "Nerja", region: "Málaga", country: "ES" },
   // Zonas de trabajo, de lo más cercano a lo más lejano
   areas: ["Nerja", "Axarquía", "Málaga", "Costa del Sol"],

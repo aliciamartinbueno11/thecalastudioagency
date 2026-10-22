@@ -30,8 +30,8 @@ export function Area() {
               Cerca, <span className="accent text-agua-deep">de verdad.</span>
             </h2>
             <p data-reveal style={revealDelay(120)} className="mt-8 max-w-xl text-xl leading-relaxed text-ink/80">
-              Estamos en Nerja, junto al Balcón de Europa. Trabajamos con negocios de toda la Axarquía
-              y de Málaga, y si estás cerca podemos vernos en persona. Si no, todo funciona igual de
+              Estamos en Nerja. Trabajamos con negocios de toda la Axarquía
+              y de Málaga, y si estás cerca nos acercamos a verte. Si no, todo funciona igual de
               bien a distancia.
             </p>
           </div>

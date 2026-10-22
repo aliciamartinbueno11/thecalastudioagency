@@ -5,7 +5,7 @@
 export const servicesFaq = [
   {
     q: "¿Dónde está Cala Studio y en qué zona trabajáis?",
-    a: "Estamos en Nerja, junto al Balcón de Europa. Trabajamos con negocios de la Axarquía (Nerja, Torrox, Frigiliana, Vélez-Málaga, Torre del Mar), de Málaga capital y del resto de la Costa del Sol. Gran parte del trabajo es digital, así que también colaboramos con marcas de fuera.",
+    a: "Estamos en Nerja. Trabajamos con negocios de la Axarquía (Nerja, Torrox, Frigiliana, Vélez-Málaga, Torre del Mar), de Málaga capital y del resto de la Costa del Sol. Gran parte del trabajo es digital, así que también colaboramos con marcas de fuera.",
   },
   {
     q: "¿Cuánto cuesta trabajar con vosotros?",

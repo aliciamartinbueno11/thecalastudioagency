@@ -22,7 +22,6 @@ export const businessSchema = {
     addressRegion: site.address.region,
     addressCountry: site.address.country,
   },
-  geo: { "@type": "GeoCoordinates", ...site.geo },
   areaServed: site.areas.map((name) => ({ "@type": "Place", name })),
   knowsAbout: services.map((s) => s.name),
   hasOfferCatalog: {
