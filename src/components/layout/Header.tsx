@@ -56,18 +56,23 @@ export function Header() {
             <Logo />
           </Link>
 
-          <nav aria-label="Principal" className="hidden xl:block">
+          <nav aria-label="Principal" className="hidden lg:block">
             <ul className="flex items-center gap-1">
-              {mainNav.map((item, i) => (
+              {/* El logo ya lleva al inicio: en escritorio no repetimos «Inicio» */}
+              {mainNav
+                .filter((item) => item.href !== "/")
+                .map((item) => (
                 <li key={item.href}>
                   <NavLink
                     href={item.href}
-                    className="flex items-baseline gap-1.5 rounded-full px-4 py-2 text-[0.95rem] text-ink transition-colors hover:text-agua-ink aria-[current=page]:text-agua-ink"
+                    className="relative flex rounded-full px-3 py-2 text-[0.95rem] text-ink transition-colors hover:text-agua-ink aria-[current=page]:text-agua-ink xl:px-4"
                   >
-                    <span className="label text-[0.625rem] text-mute group-hover/nav:text-agua-ink group-aria-[current=page]/nav:text-agua-ink">
-                      0{i + 1}
-                    </span>
                     {item.label}
+                    {/* Punto aguamarina bajo la página actual */}
+                    <span
+                      aria-hidden="true"
+                      className="absolute bottom-0 left-1/2 size-1 -translate-x-1/2 rounded-full bg-agua-deep opacity-0 transition-opacity group-aria-[current=page]/nav:opacity-100"
+                    />
                   </NavLink>
                 </li>
               ))}
@@ -95,7 +100,7 @@ export function Header() {
               aria-expanded={open}
               aria-controls="menu-movil"
               onClick={() => setOpen((v) => !v)}
-              className="relative z-10 flex h-11 min-w-11 cursor-pointer items-center justify-center gap-3 rounded-full border border-ink/20 px-3 text-sm font-medium xs:pl-4 xl:hidden"
+              className="relative z-10 flex h-11 min-w-11 cursor-pointer items-center justify-center gap-3 rounded-full border border-ink/20 px-3 text-sm font-medium xs:pl-4 lg:hidden"
             >
               {/* En pantallas estrechas solo el icono: el texto sigue disponible para lectores de pantalla */}
               <span className="sr-only xs:not-sr-only">{open ? "Cerrar" : "Menú"}</span>

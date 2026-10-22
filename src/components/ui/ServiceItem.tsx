@@ -39,7 +39,7 @@ export function ServiceItem({ service, index }: { service: Service; index: numbe
             {service.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-ink/15 px-2.5 py-0.5 text-xs text-ink/70"
+                className="rounded-full border border-ink/15 px-2.5 py-0.5 text-[0.8125rem] text-ink/75"
               >
                 {tag}
               </span>

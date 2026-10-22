@@ -79,7 +79,7 @@ export function HeroPlate({ className }: { className?: string }) {
           <span className="size-1.5 rounded-full bg-white" />
         </span>
         <span
-          className="hero-rise absolute -translate-y-1/2 rounded-full bg-cream px-3 py-1 text-[0.8rem] font-medium text-ink"
+          className="hero-rise absolute -translate-y-1/2 rounded-full bg-cream px-3 py-1 text-[0.8125rem] font-medium text-ink"
           style={{ left: `calc(${b.x}% + 1.6rem)`, top: `${(b.y / 125) * 100}%`, ...vars({ "--d": 1600 }) }}
         >
           Tu objetivo

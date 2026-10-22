@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { cta, site } from "@/data/site";
-import { services } from "@/data/services";
+import { formatPrice, services } from "@/data/services";
 import { vars } from "@/lib/style";
 import { ButtonLink } from "@/components/ui/Button";
 import { HeroPlate } from "@/components/graphics/HeroPlate";
@@ -49,15 +49,17 @@ export function Hero() {
 
             {/* Índice de servicios */}
             <nav aria-label="Servicios" className="hero-rise hidden lg:block" style={vars({ "--d": 520 })}>
-              <ul className="grid grid-cols-2 border-t border-line">
+              <ul className="max-w-md border-t border-line">
                 {services.map((s) => (
-                  <li key={s.slug} className="border-b border-line odd:border-r odd:pr-4 even:pl-4">
+                  <li key={s.slug} className="border-b border-line">
                     <Link
                       href={`/servicios#${s.slug}`}
-                      className="group/svc flex items-baseline gap-3 py-2.5 text-sm transition-colors hover:text-agua-ink"
+                      className="group/svc flex items-baseline justify-between gap-3 py-2.5 text-[0.95rem] transition-colors hover:text-agua-ink"
                     >
-                      <span className="label text-[0.625rem] text-mute group-hover/svc:text-agua-ink">{s.number}</span>
                       {s.name}
+                      <span className="tabular whitespace-nowrap text-[0.85rem] text-mute group-hover/svc:text-agua-ink">
+                        {formatPrice(s.price).replace("Desde", "desde")}
+                      </span>
                     </Link>
                   </li>
                 ))}

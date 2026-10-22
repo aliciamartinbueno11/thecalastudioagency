@@ -52,7 +52,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
       aria-label="Menú"
       inert={!open}
       className={cn(
-        "fixed inset-x-0 bottom-0 top-16 z-40 flex flex-col overflow-y-auto bg-cream transition-[opacity,visibility] duration-500 ease-out-soft lg:top-20 xl:hidden",
+        "fixed inset-x-0 bottom-0 top-16 z-40 flex flex-col overflow-y-auto bg-cream transition-[opacity,visibility] duration-500 ease-out-soft lg:top-20 lg:hidden",
         open ? "visible opacity-100" : "invisible opacity-0",
       )}
     >

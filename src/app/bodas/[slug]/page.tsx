@@ -117,15 +117,12 @@ export default async function WeddingProjectPage({ params }: { params: Promise<P
   const pieceCount = project.chapters.reduce((n, c) => n + c.blocks.reduce((m, b) => m + blockSize(b), 0), 0);
 
   // Numeración continua de figuras: la portada es la Fig. 01
-  let fig = 2;
-  const chapters = project.chapters.map((c) => ({
-    ...c,
-    blocks: c.blocks.map((b) => {
-      const start = fig;
-      fig += blockSize(b);
-      return { block: b, start };
-    }),
-  }));
+  const allBlocks = project.chapters.flatMap((c) => c.blocks);
+  const starts = allBlocks.reduce<number[]>((acc, b, i) => [...acc, i === 0 ? 2 : acc[i - 1] + blockSize(allBlocks[i - 1])], []);
+  const chapters = project.chapters.map((c, ci) => {
+    const first = project.chapters.slice(0, ci).reduce((n, prev) => n + prev.blocks.length, 0);
+    return { ...c, blocks: c.blocks.map((b, i) => ({ block: b, start: starts[first + i] })) };
+  });
 
   const meta = [
     { label: "Año", value: project.year },

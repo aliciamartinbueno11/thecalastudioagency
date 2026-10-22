@@ -36,9 +36,8 @@ export default function ServiciosPage() {
                 <li key={s.slug}>
                   <Link
                     href={`#${s.slug}`}
-                    className="inline-flex items-baseline gap-2 rounded-full border border-ink/15 px-4 py-2 text-sm transition-colors hover:border-agua hover:bg-agua"
+                    className="inline-flex min-h-11 items-center rounded-full border border-ink/15 px-4 text-[0.95rem] transition-colors hover:border-agua hover:bg-agua"
                   >
-                    <span className="label text-[0.625rem] text-mute">{s.number}</span>
                     {s.name}
                   </Link>
                 </li>
@@ -46,7 +45,7 @@ export default function ServiciosPage() {
               <li>
                 <Link
                   href="#paquetes"
-                  className="inline-flex items-baseline gap-2 rounded-full bg-agua px-4 py-2 text-sm transition-colors hover:bg-ink hover:text-cream"
+                  className="inline-flex min-h-11 items-center rounded-full bg-agua px-4 text-[0.95rem] transition-colors hover:bg-ink hover:text-cream"
                 >
                   Paquetes con descuento
                 </Link>
