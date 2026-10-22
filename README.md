@@ -10,7 +10,6 @@ npm run dev        # desarrollo
 npm run build      # producción
 npm run lint       # ESLint
 npm run typecheck  # TypeScript
-npm run placeholders  # regenera las imágenes placeholder de proyectos
 npm run preview    # build + simulación local de Cloudflare (incluye el formulario)
 npm run deploy     # publica en Cloudflare Workers (requiere sesión de wrangler)
 ```
@@ -28,7 +27,8 @@ src/
     graphics/          Fig. 01 (carta náutica) y Fig. 02 (retícula de puntos)
   data/                contenidos: site, services, method, projects
   lib/                 utilidades, fuentes, validación del formulario, metadatos
-public/images/proyectos/  imágenes de proyectos (sustituibles)
+public/images/proyectos/  imágenes de proyectos
+public/images/nerja/      foto del hero en duotono (originales y créditos en marca/fotos-nerja/)
 public/_headers           cabeceras HTTP para Cloudflare Pages
 functions/api/contacto.ts formulario: validación + envío por email (Resend)
 ```
@@ -37,7 +37,8 @@ functions/api/contacto.ts formulario: validación + envío por email (Resend)
 
 - **Dominio:** define `NEXT_PUBLIC_SITE_URL` (por defecto `https://thecalastudio.com`).
 - **Datos de contacto y redes:** `src/data/site.ts` (email, Instagram, LinkedIn, coordenadas del estudio).
-- **Proyectos:** edita `src/data/projects.ts` y reemplaza las imágenes en `public/images/proyectos/`. Cada proyecto nuevo genera su página `/proyectos/[slug]` automáticamente.
+- **Proyectos:** solo trabajos reales en `src/data/projects.ts` (imágenes en `public/images/proyectos/`). Cada proyecto genera su página `/proyectos/[slug]` y aparece en `/proyectos` y en la portada junto a las bodas.
+- **Precios y paquetes:** `src/data/services.ts` y `src/data/weddings.ts`. El precio «por separado» y el ahorro de los paquetes se calculan solos.
 - **Textos legales:** completa los datos resaltados (`<mark>`) en aviso legal y privacidad.
 - **Cookies:** la web no usa cookies de terceros; si se añade analítica, hará falta banner de consentimiento.
 

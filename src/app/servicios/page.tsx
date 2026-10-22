@@ -13,7 +13,7 @@ import { Packages } from "@/components/sections/Packages";
 export const metadata = pageMetadata({
   title: "Servicios y precios de marketing digital en Nerja y Málaga",
   description:
-    "Estrategia, redes sociales, publicidad en Meta y Google, diseño web, branding y automatización para negocios de Nerja, la Axarquía y Málaga. Qué incluye cada servicio y precios orientativos.",
+    "Estrategia, redes, publicidad en Meta y Google, web, branding y automatización para negocios de Nerja, la Axarquía y Málaga. Qué incluye y precios orientativos.",
   path: "/servicios",
 });
 

@@ -130,7 +130,7 @@ export function WeddingForm() {
 
   const input = (k: keyof WeddingPayload) =>
     cn(
-      "block w-full border-0 border-b bg-transparent px-0 pb-3 pt-2 text-lg text-umber outline-none transition-colors placeholder:text-umber-soft/70 focus:border-sea",
+      "block w-full border-0 border-b bg-transparent px-0 pb-3 pt-2 text-lg text-umber outline-none transition-colors placeholder:text-umber-soft/70 focus:border-sea focus:shadow-[0_1px_0_0_var(--color-sea)]",
       errors[k] ? "border-error" : "border-umber/25 hover:border-umber/60",
     );
   const lbl = "label-wide block text-umber-soft";
@@ -155,7 +155,7 @@ export function WeddingForm() {
           <label htmlFor={id("email")} className={lbl}>
             Email <span aria-hidden="true">*</span>
           </label>
-          <input id={id("email")} name="email" type="email" inputMode="email" autoComplete="email" value={data.email} onChange={(e) => update("email", e.target.value)} className={input("email")} {...a11y("email")} />
+          <input id={id("email")} name="email" type="email" inputMode="email" spellCheck={false} autoCapitalize="off" autoComplete="email" value={data.email} onChange={(e) => update("email", e.target.value)} className={input("email")} {...a11y("email")} />
           {err("email")}
         </div>
 

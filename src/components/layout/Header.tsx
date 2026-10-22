@@ -113,7 +113,7 @@ export function Header() {
                 />
                 <span
                   className={cn(
-                    "absolute bottom-0 left-0 h-px bg-ink transition-all duration-300",
+                    "absolute bottom-0 left-0 h-px bg-ink transition-[width,transform] duration-300",
                     open ? "w-5 -translate-y-1.5 -rotate-45" : "w-3",
                   )}
                 />

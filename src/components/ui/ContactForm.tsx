@@ -163,7 +163,7 @@ export function ContactForm({ tone = "light" }: { tone?: "light" | "dark" }) {
 
   const inputClass = (key: keyof ContactPayload) =>
     cn(
-      "peer block w-full border-0 border-b bg-transparent px-0 pb-3 pt-2 text-lg text-ink outline-none transition-colors placeholder:text-mute/70 focus:border-agua-deep focus:ring-0 focus-visible:outline-none",
+      "peer block w-full border-0 border-b bg-transparent px-0 pb-3 pt-2 text-lg text-ink outline-none transition-colors placeholder:text-mute/70 focus:border-agua-deep focus:shadow-[0_1px_0_0_var(--color-agua-deep)] focus:ring-0 focus-visible:outline-none",
       errors[key] ? "border-error" : "border-ink/25 hover:border-ink/60",
     );
 
@@ -258,6 +258,8 @@ export function ContactForm({ tone = "light" }: { tone?: "light" | "dark" }) {
             name="email"
             type="email"
             inputMode="email"
+            spellCheck={false}
+            autoCapitalize="off"
             autoComplete="email"
             required
             value={data.email}

@@ -97,7 +97,7 @@ export function WeddingsCatalog() {
                 aria-labelledby={`tab-${cat.id}`}
                 hidden={i !== active}
                 tabIndex={0}
-                className="rounded-sm bg-linen p-6 outline-none sm:p-10"
+                className="rounded-sm bg-linen p-6 outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sea sm:p-10"
               >
                 <p className="label-wide text-sea">
                   {cat.letter} · {cat.items.length} piezas

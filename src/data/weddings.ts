@@ -8,6 +8,9 @@ export const weddingBrand = {
   signature: "by Cala Studio",
   path: "/bodas",
   title: "Diseño de bodas: invitaciones, papelería y webs personalizadas",
+  // Versión corta (≤160 caracteres) para el resultado de Google
+  metaDescription:
+    "Invitaciones, papelería y webs de boda con RSVP, diseñadas en Nerja para parejas de la Axarquía, Málaga, la Costa del Sol y donde estéis.",
   description:
     "Diseño integral para bodas desde Nerja, para la Axarquía, Málaga, la Costa del Sol y donde estéis: identidad visual, invitaciones personalizadas, papelería, webs de boda con RSVP y diseño para el gran día.",
 };

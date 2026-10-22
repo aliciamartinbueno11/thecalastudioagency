@@ -26,6 +26,7 @@ export default function ProyectosPage() {
         }
         intro="Solo trabajo real: marca y web de Cala Studio, y papelería de boda de Cala Weddings."
       />
+      <h2 className="sr-only">Todos los proyectos</h2>
       <div className="container-cala grid gap-x-8 gap-y-20 pb-24 md:grid-cols-2 lg:pb-36">
         {work.map((item, i) => (
           <div

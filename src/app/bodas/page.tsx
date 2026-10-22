@@ -16,7 +16,7 @@ import { WeddingsContact } from "@/components/weddings/WeddingsContact";
 
 export const metadata: Metadata = {
   title: { absolute: "Cala Weddings · Invitaciones, papelería y webs de boda en Nerja y Málaga" },
-  description: weddingBrand.description,
+  description: weddingBrand.metaDescription,
   keywords: [
     "diseño de invitaciones de boda personalizadas",
     "diseño gráfico para bodas",

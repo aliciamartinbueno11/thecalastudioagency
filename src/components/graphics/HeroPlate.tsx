@@ -18,12 +18,12 @@ export function HeroPlate({ className }: { className?: string }) {
     <figure className={cn("relative", className)}>
       <div className="relative aspect-[4/5] overflow-hidden bg-agua-soft sm:aspect-[5/4] lg:aspect-square">
         <picture>
-          <source media="(min-width: 640px)" srcSet="/images/nerja/cala-del-canuelo-1600.webp" />
+          <source media="(min-width: 640px)" srcSet="/images/nerja/cala-del-canuelo-1200.webp" />
           <img
             src="/images/nerja/cala-del-canuelo-900.webp"
             alt="La Cala del Cañuelo, en Nerja, vista desde el acantilado: agua turquesa, una playa curva de arena clara y montes con matorral."
-            width={1600}
-            height={912}
+            width={1200}
+            height={684}
             fetchPriority="high"
             className="plate-drift absolute inset-0 size-full object-cover object-[58%_50%]"
           />

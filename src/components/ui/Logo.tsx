@@ -15,6 +15,7 @@ export function Logo({ className }: { className?: string }) {
     <span className={cn("inline-flex items-center gap-2.5", className)}>
       <LogoMark />
       <span
+        translate="no"
         className="font-display text-[1.05rem] font-bold uppercase leading-none tracking-[0.02em]"
         style={{ fontVariationSettings: '"wdth" 80, "opsz" 24' }}
       >

@@ -8,7 +8,6 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "placeholders": "node scripts/generate-placeholders.mjs",
     "preview": "npm run build && wrangler dev",
     "deploy": "wrangler deploy"
   },

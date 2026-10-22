@@ -35,7 +35,7 @@ export function ServiceItem({ service, index }: { service: Service; index: numbe
 
         <span className="col-span-full col-start-2 max-w-md text-base leading-relaxed text-mute md:col-span-4 md:col-start-auto">
           {service.short}
-          <span className="mt-3 flex flex-wrap gap-1.5 md:h-0 md:overflow-hidden md:opacity-0 md:transition-all md:duration-500 md:group-hover/item:h-7 md:group-hover/item:opacity-100">
+          <span className="mt-3 flex flex-wrap gap-1.5 md:h-0 md:overflow-hidden md:opacity-0 md:transition-[height,opacity] md:duration-500 md:group-hover/item:h-7 md:group-hover/item:opacity-100">
             {service.tags.map((tag) => (
               <span
                 key={tag}
@@ -47,7 +47,7 @@ export function ServiceItem({ service, index }: { service: Service; index: numbe
           </span>
         </span>
 
-        <span className="col-start-3 row-start-1 grid size-11 place-items-center justify-self-end rounded-full border border-ink/15 transition-all duration-500 ease-out-soft group-hover/item:border-agua group-hover/item:bg-agua md:col-span-2 md:col-start-auto md:row-start-auto md:size-14">
+        <span className="col-start-3 row-start-1 grid size-11 place-items-center justify-self-end rounded-full border border-ink/15 transition-colors duration-500 ease-out-soft group-hover/item:border-agua group-hover/item:bg-agua md:col-span-2 md:col-start-auto md:row-start-auto md:size-14">
           <Arrow
             direction="up-right"
             className="transition-transform duration-500 ease-out-soft group-hover/item:rotate-0"
