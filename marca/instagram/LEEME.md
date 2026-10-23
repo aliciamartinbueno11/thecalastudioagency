@@ -9,7 +9,7 @@ Para regenerarlas tras cambiar textos: `npm run build` y después `node marca/in
 
 | Campo | Texto |
 |---|---|
-| Usuario | `@thecalastudio` (o `@calastudio` si está libre) |
+| Usuario | `@calastudio.agency` |
 | Nombre | `Cala Studio · Marketing` *(máx. 30 caracteres; sale en las búsquedas)* |
 | Categoría | Agencia de marketing |
 | Enlace | `https://thecalastudio.com/contacto` |

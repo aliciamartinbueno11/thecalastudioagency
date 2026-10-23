@@ -17,8 +17,8 @@ export const site = {
   // Zonas de trabajo, de lo más cercano a lo más lejano
   areas: ["Nerja", "Axarquía", "Málaga", "Costa del Sol"],
   social: {
-    instagram: "https://www.instagram.com/calastudio",
-    linkedin: "https://www.linkedin.com/company/calastudio",
+    instagram: "https://www.instagram.com/calastudio.agency/",
+    linkedin: "https://www.linkedin.com/company/the-cala-studio",
   },
 } as const;
 
