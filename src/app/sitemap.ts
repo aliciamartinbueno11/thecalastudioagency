@@ -1,19 +1,22 @@
 export const dynamic = "force-static";
 
 import type { MetadataRoute } from "next";
+import { blogPosts, postUpdated } from "@/data/blog";
 import { projects } from "@/data/projects";
 import { site } from "@/data/site";
 import { weddingProjects } from "@/data/weddings";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const routes: { path: string; priority: number }[] = [
+  const routes: { path: string; priority: number; lastModified?: Date }[] = [
     { path: "", priority: 1 },
     { path: "/servicios", priority: 0.9 },
     { path: "/bodas", priority: 0.9 },
     ...weddingProjects.map((p) => ({ path: `/bodas/${p.slug}`, priority: 0.7 })),
     { path: "/proyectos", priority: 0.8 },
     ...projects.map((p) => ({ path: `/proyectos/${p.slug}`, priority: 0.7 })),
+    { path: "/blog", priority: 0.8 },
+    ...blogPosts.map((p) => ({ path: `/blog/${p.slug}`, priority: 0.7, lastModified: new Date(postUpdated(p)) })),
     { path: "/nosotros", priority: 0.7 },
     { path: "/contacto", priority: 0.9 },
     { path: "/aviso-legal", priority: 0.2 },
@@ -22,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
   return routes.map((r) => ({
     url: `${site.url}${r.path}`,
-    lastModified: now,
+    lastModified: r.lastModified ?? now,
     changeFrequency: "monthly",
     priority: r.priority,
   }));

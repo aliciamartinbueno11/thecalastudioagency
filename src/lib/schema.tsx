@@ -67,6 +67,36 @@ export function breadcrumbSchema(items: { name: string; path: string }[]) {
   };
 }
 
+/** Artículo del blog. Lo firma el estudio (Organization), enlazado al negocio. */
+export function articleSchema(post: {
+  title: string;
+  description: string;
+  path: string;
+  published: string;
+  updated: string;
+  keywords: string[];
+  section: string;
+}) {
+  const url = `${site.url}${post.path}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": `${url}#articulo`,
+    headline: post.title,
+    description: post.description,
+    url,
+    mainEntityOfPage: url,
+    image: `${url}/opengraph-image`,
+    datePublished: post.published,
+    dateModified: post.updated,
+    inLanguage: "es-ES",
+    keywords: post.keywords.join(", "),
+    articleSection: post.section,
+    author: { "@type": "Organization", "@id": businessId, name: `Equipo ${site.name}`, url: site.url },
+    publisher: { "@id": businessId },
+  };
+}
+
 /** Etiqueta <script> de datos estructurados. */
 export function JsonLd({ data }: { data: object }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;

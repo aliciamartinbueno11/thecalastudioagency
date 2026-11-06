@@ -5,6 +5,8 @@ import { ButtonLink } from "./Button";
 type CTAProps = {
   title?: ReactNode;
   text?: string;
+  /** Botón distinto del de contacto (p. ej., /bodas) */
+  action?: { label: string; href: string };
 };
 
 /** Banda de cierre para páginas interiores. */
@@ -15,6 +17,7 @@ export function CTA({
     </>
   ),
   text = "Cuéntanos en qué punto estás. Te diremos con sinceridad si podemos ayudarte.",
+  action = cta.primary,
 }: CTAProps) {
   return (
     <section aria-label="Contacto" className="bg-ink py-20 text-cream lg:py-28">
@@ -24,8 +27,8 @@ export function CTA({
         </h2>
         <div data-reveal className="lg:col-span-4">
           <p className="max-w-sm text-lg leading-relaxed text-cream/75">{text}</p>
-          <ButtonLink href={cta.primary.href} tone="dark" className="mt-8">
-            {cta.primary.label}
+          <ButtonLink href={action.href} tone="dark" className="mt-8">
+            {action.label}
           </ButtonLink>
         </div>
       </div>
