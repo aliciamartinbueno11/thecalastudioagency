@@ -4,13 +4,15 @@ import { ButtonLink } from "@/components/ui/Button";
 import { WeddingPackButton } from "@/components/weddings/WeddingPackButton";
 
 /**
- * Oferta de lanzamiento: los 10 primeros proyectos al 90 %.
+ * Oferta de lanzamiento al 90 %, con plazas separadas para marketing y para bodas.
  * `studio` en /servicios (lleva a /contacto) y `weddings` en /bodas (rellena el formulario de la página).
- * Desaparece sola cuando no quedan plazas (src/data/launch.ts).
+ * Cada una desaparece sola cuando no le quedan plazas (src/data/launch.ts).
  */
 export function LaunchOffer({ tone = "studio" }: { tone?: "studio" | "weddings" }) {
-  if (!launchOpen) return null;
+  if (!launchOpen(tone)) return null;
   const weddings = tone === "weddings";
+  const pool = launch[tone];
+  const left = launchLeft(tone);
 
   return (
     <section
@@ -29,13 +31,13 @@ export function LaunchOffer({ tone = "studio" }: { tone?: "studio" | "weddings" 
               weddings ? "serif-display text-[clamp(2.6rem,6vw,5rem)]" : "display text-[clamp(2.75rem,6.5vw,5.5rem)]",
             )}
           >
-            Los {launch.spots} primeros proyectos,{" "}
+            {weddings ? `Las ${pool.spots} primeras bodas,` : `Los ${pool.spots} primeros proyectos,`}{" "}
             {weddings ? <em className="text-agua">al 90 %.</em> : <span className="accent text-agua">al 90 %.</span>}
           </h2>
           <p className={cn("mt-6 max-w-xl text-lg leading-relaxed", weddings ? "text-linen/85" : "text-cream/85")}>
             {weddings
-              ? "Estamos empezando y queremos llenar el portfolio de bodas reales. Las diez primeras parejas pagan solo el 10 % del diseño. A cambio, podemos enseñar el resultado (sin nombres ni datos) y nos mencionáis cuando lo publiquéis."
-              : "Estamos empezando y queremos llenar el portfolio de trabajo real. Los diez primeros proyectos cuestan solo el 10 % de su precio. A cambio, podemos enseñar el resultado y nos mencionas en tus redes cuando lo publiques."}
+              ? `Estamos empezando y queremos llenar el portfolio de bodas reales. Las ${pool.spots} primeras parejas pagan solo el 10 % del diseño. A cambio, podemos enseñar el resultado (sin nombres ni datos) y nos mencionáis cuando lo publiquéis.`
+              : `Estamos empezando y queremos llenar el portfolio de trabajo real. Los ${pool.spots} primeros proyectos de marketing cuestan solo el 10 % de su precio. A cambio, podemos enseñar el resultado y nos mencionas en tus redes cuando lo publiques.`}
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-4">
             {weddings ? (
@@ -51,14 +53,14 @@ export function LaunchOffer({ tone = "studio" }: { tone?: "studio" | "weddings" 
               </ButtonLink>
             )}
             <a
-              href={catalogPdf}
+              href={catalogPdf[tone]}
               download
               className={cn(
                 "inline-flex h-12 items-center rounded-full border px-6 text-[0.95rem] font-medium transition-colors",
                 weddings ? "border-linen/30 hover:border-linen" : "border-cream/30 hover:border-cream",
               )}
             >
-              Descargar catálogo (PDF)
+              {weddings ? "Descargar catálogo de bodas (PDF)" : "Descargar catálogo (PDF)"}
             </a>
           </div>
         </div>
@@ -66,16 +68,16 @@ export function LaunchOffer({ tone = "studio" }: { tone?: "studio" | "weddings" 
         <div className="lg:col-span-4 lg:col-start-9 lg:self-end">
           <p className="flex items-baseline gap-3">
             <span className={cn("tabular text-[clamp(4rem,9vw,6.5rem)] leading-none text-agua", weddings ? "serif-display" : "display")}>
-              {launchLeft}
+              {left}
             </span>
             <span className={cn("text-lg", weddings ? "text-linen/80" : "text-cream/80")}>
-              de {launch.spots} plazas
+              de {pool.spots} plazas
               <br />
               disponibles
             </span>
           </p>
           <ul className={cn("mt-8 space-y-2.5 border-t pt-6 text-[0.95rem] leading-snug", weddings ? "border-linen/20 text-linen/80" : "border-line-dark text-cream/80")}>
-            {launch.conditions.slice(1, 4).map((c) => (
+            {pool.conditions.slice(1, -1).map((c) => (
               <li key={c} className="flex gap-3">
                 <span aria-hidden="true" className="mt-[0.5em] size-1.5 shrink-0 rounded-full bg-agua" />
                 {c}
