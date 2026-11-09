@@ -1,7 +1,10 @@
-import { work } from "@/data/work";
+import type { ReactNode } from "react";
+import type { WorkItem } from "@/data/work";
+import { studioWork, weddingWork } from "@/data/work";
 import { pageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, JsonLd } from "@/lib/schema";
 import { revealDelay } from "@/lib/style";
+import { ButtonLink } from "@/components/ui/Button";
 import { CTA } from "@/components/ui/CTA";
 import { WorkCard } from "@/components/ui/WorkCard";
 import { PageHero } from "@/components/sections/PageHero";
@@ -24,11 +27,58 @@ export default function ProyectosPage() {
             Trabajo que se puede <span className="accent text-agua-deep">enseñar.</span>
           </>
         }
-        intro="Solo trabajo real: marca y web de Cala Studio, y papelería de boda de Cala Weddings."
+        intro="Solo trabajo real, separado: marketing online para negocios y diseño para bodas."
       />
-      <h2 className="sr-only">Todos los proyectos</h2>
-      <div className="container-cala grid gap-x-8 gap-y-20 pb-24 md:grid-cols-2 lg:pb-36">
-        {work.map((item, i) => (
+      <WorkGroup id="marketing" title="Marketing online" items={studioWork} />
+      <WorkGroup
+        id="bodas"
+        title={
+          <>
+            Bodas <span className="accent text-mute">· Cala Weddings</span>
+          </>
+        }
+        items={weddingWork}
+        more={{ href: "/bodas", label: "Ver todo el diseño de bodas" }}
+      />
+      <CTA
+        title={
+          <>
+            ¿El próximo, <span className="accent text-agua">el tuyo?</span>
+          </>
+        }
+        text="Cuéntanos qué necesitas y te respondemos con una propuesta clara y un precio cerrado."
+      />
+    </>
+  );
+}
+
+/** Un grupo de proyectos (marketing o bodas) con su propia cabecera */
+function WorkGroup({
+  id,
+  title,
+  items,
+  more,
+}: {
+  id: string;
+  title: ReactNode;
+  items: WorkItem[];
+  more?: { href: string; label: string };
+}) {
+  if (items.length === 0) return null;
+  return (
+    <section id={id} aria-labelledby={`${id}-title`} className="container-cala scroll-mt-24 pb-24 lg:pb-36">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-8 gap-y-3 border-t border-line pt-5">
+        <h2 id={`${id}-title`} className="display-wide text-[clamp(1.75rem,3vw,2.5rem)]">
+          {title}
+        </h2>
+        {more ? (
+          <ButtonLink href={more.href} variant="link">
+            {more.label}
+          </ButtonLink>
+        ) : null}
+      </div>
+      <div className="mt-12 grid gap-x-8 gap-y-20 md:grid-cols-2">
+        {items.map((item, i) => (
           <div
             key={item.href}
             data-reveal
@@ -39,14 +89,6 @@ export default function ProyectosPage() {
           </div>
         ))}
       </div>
-      <CTA
-        title={
-          <>
-            ¿El próximo, <span className="accent text-agua">el tuyo?</span>
-          </>
-        }
-        text="Cuéntanos qué necesitas y te respondemos con una propuesta clara y un precio cerrado."
-      />
-    </>
+    </section>
   );
 }
