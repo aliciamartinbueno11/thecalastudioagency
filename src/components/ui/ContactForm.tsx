@@ -62,13 +62,21 @@ export function ContactForm({ tone = "light" }: { tone?: "light" | "dark" }) {
       : preset && (serviceOptions as readonly string[]).includes(preset)
         ? [preset]
         : [];
-    if (presetServices.length === 0) return;
+    // Desde la oferta de lanzamiento (?oferta=lanzamiento)
+    const offer = params.get("oferta") === "lanzamiento";
+    if (presetServices.length === 0 && !offer) return;
     // La URL solo existe en el navegador: se lee tras hidratar para no romper el HTML estático
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setData((d) => ({
       ...d,
       services: [...new Set([...d.services, ...presetServices])],
-      message: pkg && !d.message ? `Me interesa el paquete «${pkg.name}». ` : d.message,
+      message: d.message
+        ? d.message
+        : pkg
+          ? `Me interesa el paquete «${pkg.name}». `
+          : offer
+            ? "Me interesa una de las plazas de la oferta de lanzamiento. "
+            : "",
     }));
   }, []);
 

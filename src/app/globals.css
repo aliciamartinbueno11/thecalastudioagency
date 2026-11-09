@@ -467,3 +467,51 @@ html:not(.js) .dotfield .hit-ring {
   color: inherit;
   padding: 0 0.2em;
 }
+
+/* ------------------------------------------------------------------
+   Catálogo imprimible (/catalogo → PDF en A4)
+   ------------------------------------------------------------------ */
+@page {
+  size: A4;
+  margin: 0;
+}
+.catalogo {
+  overflow-x: auto;
+  padding-bottom: 3rem;
+}
+.catalogo .sheet {
+  width: 210mm;
+  height: 297mm;
+  padding: 16mm;
+  margin: 0 auto 12mm;
+  box-shadow: 0 0 0 1px var(--color-line);
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  /* Fuera la cabecera, el menú y el pie de la web */
+  body:has(.catalogo) > :not(main),
+  .screen-only {
+    display: none !important;
+  }
+  .catalogo {
+    overflow: visible;
+    padding: 0;
+  }
+  .catalogo .sheet {
+    margin: 0;
+    box-shadow: none;
+    break-after: page;
+  }
+  /* Al imprimir cualquier página, nada se queda oculto esperando a la animación */
+  .js [data-reveal],
+  .js [data-reveal] img {
+    opacity: 1 !important;
+    transform: none !important;
+    translate: none !important;
+    clip-path: none !important;
+  }
+}

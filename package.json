@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
+    "catalogo": "node scripts/catalogo.mjs",
     "preview": "npm run build && wrangler dev",
     "deploy": "wrangler deploy"
   },

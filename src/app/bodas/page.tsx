@@ -7,6 +7,7 @@ import { WeddingsHero } from "@/components/weddings/WeddingsHero";
 import { WeddingsPhilosophy } from "@/components/weddings/WeddingsPhilosophy";
 import { WeddingsCatalog } from "@/components/weddings/WeddingsCatalog";
 import { WeddingsPackages } from "@/components/weddings/WeddingsPackages";
+import { LaunchOffer } from "@/components/sections/LaunchOffer";
 import { WeddingsProjects } from "@/components/weddings/WeddingsProjects";
 import { WeddingsIdentity } from "@/components/weddings/WeddingsIdentity";
 import { WeddingsInspiration } from "@/components/weddings/WeddingsInspiration";
@@ -88,6 +89,7 @@ export default function BodasPage() {
       <WeddingsProjects />
       <WeddingsCatalog />
       <WeddingsPackages />
+      <LaunchOffer tone="weddings" />
       <WeddingsIdentity />
       <WeddingsInspiration />
       <WeddingsProcess />

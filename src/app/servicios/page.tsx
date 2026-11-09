@@ -9,6 +9,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { CTA } from "@/components/ui/CTA";
 import { PageHero } from "@/components/sections/PageHero";
 import { Packages } from "@/components/sections/Packages";
+import { LaunchOffer } from "@/components/sections/LaunchOffer";
 
 export const metadata = pageMetadata({
   title: "Servicios y precios de marketing digital en Nerja y Málaga",
@@ -117,6 +118,7 @@ export default function ServiciosPage() {
       </div>
 
       <Packages />
+      <LaunchOffer />
 
       <section aria-labelledby="faq-title" className="bg-paper py-24 lg:py-32">
         <div className="container-cala grid gap-10 lg:grid-cols-12 lg:gap-8">

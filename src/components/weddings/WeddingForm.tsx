@@ -38,13 +38,12 @@ export function WeddingForm() {
   // Al pulsar «Pedir este paquete», el paquete queda indicado en el mensaje
   useEffect(() => {
     const onPackage = (e: Event) => {
-      const name = (e as CustomEvent<string>).detail;
-      const line = `Nos interesa el paquete «${name}». `;
+      const line = (e as CustomEvent<string>).detail;
       setData((d) => ({
         ...d,
-        scope: "integral",
-        // Sustituye el paquete anterior si se cambia de opinión
-        message: line + d.message.replace(/^Nos interesa el paquete «[^»]+»\. /, ""),
+        scope: line.includes("paquete") ? "integral" : d.scope,
+        // Sustituye la elección anterior si se cambia de opinión
+        message: line + d.message.replace(/^Nos interesa [^.]*\. /, ""),
       }));
     };
     window.addEventListener(WEDDING_PACKAGE_EVENT, onPackage);
