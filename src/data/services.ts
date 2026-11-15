@@ -14,7 +14,7 @@ export type Service = {
 };
 
 /**
- * PRECIOS ORIENTATIVOS — propuesta pendiente de validar por Cala Studio.
+ * PRECIOS ORIENTATIVOS, validados por Cala Studio el 13 de noviembre de 2026.
  * Cambia aquí las cifras: se actualizan en /servicios, en la portada y en los datos estructurados.
  */
 export const pricingNote =

@@ -28,7 +28,7 @@ export type WeddingCategory = {
   fromLabel: string;
 };
 
-/** PRECIOS ORIENTATIVOS — propuesta pendiente de validar por Cala Studio. */
+/** PRECIOS ORIENTATIVOS, validados por Cala Studio el 13 de noviembre de 2026. */
 export const weddingPricingNote =
   "Precios orientativos de diseño, sin IVA. La impresión y la producción van aparte. Os enviamos un presupuesto cerrado según las piezas que elijáis.";
 

@@ -52,13 +52,14 @@ export default function CatalogoBodasPage() {
         </header>
 
         <div className="mt-[32mm]">
-          <p className="text-[12pt] text-umber-soft">Diseño gráfico y digital para bodas, desde Nerja</p>
+          <p className="text-[12pt] text-umber-soft">Diseño gráfico y digital para bodas, estéis donde estéis</p>
           <h1 className="serif-display mt-4 text-[60pt] leading-[0.95]">
             Vuestra boda también <em className="text-sea">tiene identidad.</em>
           </h1>
           <p className="mt-6 max-w-[120mm] text-[13pt] leading-relaxed text-umber/80">
             Invitaciones, papelería, webs de boda con RSVP y todo lo que se ve el gran día, con un mismo
-            trazo. Para parejas de la Axarquía, Málaga, la Costa del Sol y donde estéis.
+            trazo. Trabajamos en remoto con parejas y wedding planners de toda España y de fuera, en
+            español, inglés y otros idiomas.
           </p>
         </div>
 
